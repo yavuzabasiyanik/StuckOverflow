@@ -1,0 +1,38 @@
+//// -- LEVEL 1
+//// -- Tables and References
+
+// Creating tables
+Table users{
+  id int [pk, increment] // auto-increment
+  userName varchar
+  password varchar
+}
+
+Table questions {
+  id int [pk, increment]
+  message text
+  userId integer
+ }
+
+Ref: users.id < questions.userId
+
+
+Table answers {
+  id int [pk, increment]
+  message text
+  userId integer
+  questionId integer
+ }
+
+Ref: users.id < answers.userId
+Ref: questions.id < answers.questionId
+
+Table votes {
+  id int [pk, increment]
+  vote integer
+  userId integer
+  answerId integer
+ }
+
+Ref: users.id < votes.userId
+Ref: answers.id < votes.answerId
