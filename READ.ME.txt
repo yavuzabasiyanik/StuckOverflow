@@ -4,12 +4,20 @@
 // Creating tables
 Table users{
   id int [pk, increment] // auto-increment
+  firstName varchar
+  lastName varchar
+  email varchar
   userName varchar
+  profileUrl varchar
   password varchar
 }
 
 Table questions {
   id int [pk, increment]
+  title varchar
+  questionImg1 varchar
+  questionImg2 varchar
+  questionImg3 varchar
   message text
   userId integer
  }
@@ -20,6 +28,9 @@ Ref: users.id < questions.userId
 Table answers {
   id int [pk, increment]
   message text
+  answerImg1 varchar
+  answerImg2 varchar
+  answerImg3 varchar
   userId integer
   questionId integer
  }
@@ -29,7 +40,7 @@ Ref: questions.id < answers.questionId
 
 Table votes {
   id int [pk, increment]
-  vote integer
+  upVote boolean
   userId integer
   answerId integer
  }
