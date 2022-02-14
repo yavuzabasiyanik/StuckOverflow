@@ -8,15 +8,15 @@ npx dotenv sequelize db:create
 
 //models
 
-npx dotenv sequelize model:generate --name User --attributes firstName:string,lastName:string,email:string,userName:string,profileUrl:string,hashedPassword:string
+npx sequelize model:generate --name User --attributes firstName:string,lastName:string,email:string,userName:string,profileUrl:string,hashedPassword:string
 
-npx dotenv sequelize model:generate --name Question --attributes title:string,questionImg1:string,questionImg2:string,questionImg3:string,message:text,userId:integer
+npx sequelize model:generate --name Question --attributes title:string,questionImg1:string,questionImg2:string,questionImg3:string,message:text,userId:integer
 
-npx dotenv sequelize model:generate --name Answer --attributes message:text,answerImg1:string,answerImg2:string,answerImg3:string,userId:integer,questionId:integer
+npx sequelize model:generate --name Answer --attributes message:text,answerImg1:string,answerImg2:string,answerImg3:string,userId:integer,questionId:integer
 
-npx dotenv sequelize model:generate --name Upvote --attributes userId:integer,answerId:integer
+npx sequelize model:generate --name Upvote --attributes userId:integer,answerId:integer
 
-npx dotenv sequelize model:generate --name Downvote --attributes userId:integer,answerId:integer
+npx sequelize model:generate --name Downvote --attributes userId:integer,answerId:integer
 
 //seeders
 
