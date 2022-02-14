@@ -18,7 +18,13 @@ npx sequelize model:generate --name Upvote --attributes userId:integer,answerId:
 
 npx sequelize model:generate --name Downvote --attributes userId:integer,answerId:integer
 
+npx dotenv sequelize db:migrate
+
 //seeders
+
+npx sequelize seed:generate --name usersSeeder
+npx sequelize seed:generate --name questionsSeeder
+npx sequelize seed:generate --name answersSeeder
 
 //users
 {
