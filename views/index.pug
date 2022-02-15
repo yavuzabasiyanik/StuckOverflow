@@ -1,23 +1,40 @@
-extends layout
+doctype html
+html
+  head
+      block head
+        title=title
+        link(rel='stylesheet' href='/stylesheets/layout.css')
+  body(class="login-bg")
+    nav(class='nav-bar')
+      //- svg(width="24px", height="24px")
+      //-   img(src="../public/images/Logo.svg")
+      div(class="profile-questions")
+        img(src="/images/Logo.svg" alt="logo" class="logo")
+        if locals.authenticated
+          a(class='profile' href='/profile') Profile
+          a(class='questions' href='/questions') Questions
+        else
+          a(class='profile' href='/profile') Profile
+          a(class='questions' href='/questions') Questions
+      input(type="text" name="search" class="search-bar" placeholder="Search")
+      div(class="nav-buttons")
+        if locals.authenticated
+          a(class='logout button' href='/') Log-Out
+        else
+          a(class='login button' href='/') Log-In
+          a(class='signup button' href='/users/signup') Sign-Up
 
-append head
-  //- add page specific styles by appending to the head
-  link(rel="stylesheet" href="/stylesheets/index.css")
-  //- add page specific js
-  script(src="/javascripts/index.js" type="module" defer)
-
-block content
-  div(class="Login-form")
-    h1= title
-    div.error-container
-      if errors
-          ul
-              each error in errors
-                  li= error
-    form(action="/", method="post")
-      input(type="hidden" name="_csrf" value=csrfToken)
-      label(for="userName") Username
-      input(type="text" name="userName" placeholder="Username")
-      label(for="password") Password
-      input(type="password" name="password" placeholder="password")
-      button(type="submit" class="login-button") Log-in!
+    div(class="Login-form")
+          h1= title
+          div.error-container
+            if errors
+                ul
+                    each error in errors
+                        li= error
+          form(action="/", method="post")
+            input(type="hidden" name="_csrf" value=csrfToken)
+            label(for="userName") Username
+            input(type="text" name="userName" placeholder="Username")
+            label(for="password") Password
+            input(type="password" name="password" placeholder="password")
+            button(type="submit" class="login-button") Log-in!

@@ -6,8 +6,10 @@ html
         link(rel='stylesheet' href='/stylesheets/layout.css')
   body
     nav(class='nav-bar')
-      //- img(src="", alt="")
+      //- svg(width="24px", height="24px")
+      //-   img(src="../public/images/Logo.svg")
       div(class="profile-questions")
+        img(src="/images/Logo.svg" alt="logo" class="logo")
         if locals.authenticated
           a(class='profile' href='/profile') Profile
           a(class='questions' href='/questions') Questions
