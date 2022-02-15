@@ -92,7 +92,7 @@ router.post('/signup', userValidator, csrfProtection, asyncHandler(async (req, r
     user.hashedPassword = hashedPassword;
     await user.save();
     loginUser(req, res, user);
-    res.redirect('/');
+    res.redirect('/questions');
 
   } else {
     const errors = validatorErr.array().map((err) => err.msg);
