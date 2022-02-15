@@ -1,0 +1,10 @@
+extends layout.pug
+
+block content
+    button(type="submit" href="/questions/ask") Ask a Question
+    each question in questions
+        div
+            div= `Answers for Question ${question.id}: ${question.Answers.length}`
+            a(href=`/questions/${question.id}`)= question.title
+            div= question.message
+            div= `Username: ${question.User.userName}`
