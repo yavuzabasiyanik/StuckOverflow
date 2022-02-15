@@ -6,7 +6,7 @@ const { loginUser, logoutUser } = require('../auth');
 const { check, validationResult } = require('express-validator');
 
 const loginValidators = [
-  check('email')
+  check('userName')
     .exists({ checkFalsy: true })
     .withMessage('Please enter an Email Address'),
   check('password')
@@ -17,13 +17,16 @@ const loginValidators = [
 
 
 /* GET log in. */
-router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Log in' });
+router.get('/', csrfProtection, (req, res) => {
+  res.render('index', {
+    title: 'Log in',
+    csrfToken: req.csrfToken()
+  });
 });
 
 router.post('/', csrfProtection, loginValidators, asyncHandler(async (req, res) => {
   const { userName, password } = req.body;
-
+  console.log(userName, password);
   const validatorErrors = validationResult(req);
 
   if (validatorErrors.isEmpty()) {
