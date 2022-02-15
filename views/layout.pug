@@ -3,12 +3,23 @@ html
   head
       block head
         title=title
-        link(rel='stylesheet' href='/stylesheets/reset.css')
+        link(rel='stylesheet' href='/stylesheets/layout.css')
   body
     nav(class='nav-bar')
-      a(class='profile' href='/profile') Profile
-      a(class='questions' href='/questions') Questions
-      a(class='login' href='/') Log-In
-      a(class='signup' href='/users/signup') Sign-Up
-      a(class='logout' href='/') Log-Out
+      //- img(src="", alt="")
+      div(class="profile-questions")
+        if locals.authenticated
+          a(class='profile' href='/profile') Profile
+          a(class='questions' href='/questions') Questions
+        else
+          a(class='profile' href='/profile') Profile
+          a(class='questions' href='/questions') Questions
+      input(type="text" name="search" class="search-bar" placeholder="Search")
+      div(class="nav-buttons")
+        if locals.authenticated
+          a(class='logout button' href='/') Log-Out
+        else
+          a(class='login button' href='/') Log-In
+          a(class='signup button' href='/users/signup') Sign-Up
+
     block content

@@ -7,8 +7,8 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  h1= title
-  p Please Log in
+  div(class="Login-form")
+    h1= title
     div.error-container
       if errors
           ul
@@ -20,4 +20,4 @@ block content
       input(type="text" name="userName" placeholder="Username")
       label(for="password") Password
       input(type="password" name="password" placeholder="password")
-      button(type="submit") Log-in!
+      button(type="submit" class="login-button") Log-in!
