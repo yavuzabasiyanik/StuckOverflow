@@ -9,10 +9,10 @@ append head
 block content
   h1= title
   p Please Log in
-    form(action="/", method="get")
+    form(action="/", method="post")
       input(type="hidden" name="_csrf" value=csrfToken)
-      label(for="username") Username
-      input(type="text" name="username" placeholder="username")
+      label(for="userName") Username
+      input(type="text" name="userName" placeholder="Username")
       label(for="password") Password
       input(type="password" name="password" placeholder="password")
       button(type="submit") Log-in!
