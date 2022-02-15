@@ -5,4 +5,10 @@ html
         title=title
         link(rel='stylesheet' href='/stylesheets/reset.css')
   body
+    nav(class='nav-bar')
+      a(class='profile' href='/profile') Profile
+      a(class='questions' href='/questions') Questions
+      a(class='login' href='/') Log-In
+      a(class='signup' href='/users/signup') Sign-Up
+      a(class='logout' href='/') Log-Out
     block content

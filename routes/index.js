@@ -4,6 +4,8 @@ const { asyncHandler, csrfProtection } = require('./utils');
 const db = require("../db/models");
 const { loginUser, logoutUser } = require('../auth');
 const { check, validationResult } = require('express-validator');
+const bcrypt = require('bcryptjs');
+
 
 const loginValidators = [
   check('userName')
@@ -17,30 +19,31 @@ const loginValidators = [
 
 
 /* GET log in. */
-router.get('/', csrfProtection, (req, res) => {
+router.get('/',csrfProtection, (req, res) => {
   res.render('index', {
     title: 'Log in',
-    csrfToken: req.csrfToken()
+    csrfToken:req.csrfToken(),
   });
 });
 
 router.post('/', csrfProtection, loginValidators, asyncHandler(async (req, res) => {
   const { userName, password } = req.body;
-  console.log(userName, password);
+
   const validatorErrors = validationResult(req);
 
+  console.log(req.body);
   if (validatorErrors.isEmpty()) {
     const user = await db.User.findOne({
       where: {
         userName
       }
     });
-    console.log(user);
+
     if (user) {
       const isPassword = await bcrypt.compare(password, user.hashedPassword.toString());
       if (isPassword) {
         loginUser(req, res, user);
-        return res.redirect('/');
+        res.redirect('/questions');
       }
     }
     //Otherwise display error
@@ -49,9 +52,9 @@ router.post('/', csrfProtection, loginValidators, asyncHandler(async (req, res) 
     errors = validatorErrors.array().map((error) => error.msg);
   }
 
-  res.render('/', {
+  res.render('index', {
     title: 'Login',
-    emailAddress,
+    userName,
     errors,
     csrfToken: req.csrfToken(),
   });
