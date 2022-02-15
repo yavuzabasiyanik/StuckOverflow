@@ -46,6 +46,11 @@ a {
 
 }
 
+.profile-questions {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 .profile {
     /* display: flex;
     justify-content: space-between; */
@@ -57,8 +62,7 @@ a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 25%;
-    /* left: 50%; */
+    margin: 25% auto;
     position: relative;
     background : #FFFFFF;
     background : rgba(255, 255, 255, 0.5);
@@ -71,6 +75,19 @@ a {
     border-radius : 13px;
     -moz-border-radius : 13px;
     -webkit-border-radius : 13px;
+}
+
+.logo {
+    height: 30px;
+    width: 30px;
+    margin-left: 10px
+}
+
+body.login-bg {
+    background-image: url('/images/StuckOverflow_BG.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 form {
