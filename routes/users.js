@@ -49,7 +49,7 @@ check('email')
         }
       });
   }),
-check('username')
+check('userName')
   .exists({checkFalsy:true})
   .withMessage('Please enter a username')
   .isLength({ max: 50 })
@@ -58,9 +58,9 @@ check('password')
   .exists({ checkFalsy: true })
   .withMessage('Please enter a Password')
   .isLength({ max: 50 })
-  .withMessage('Password can not be more than 50 characters long')
-  .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, 'g')
-  .withMessage('Password must contain at least 1 lowercase letter, uppercase letter, number, and special character (i.e. "!@#$%^&*")'),
+  .withMessage('Password can not be more than 50 characters long'),
+  // .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, 'g')
+  // .withMessage('Password must contain at least 1 lowercase letter, uppercase letter, number, and special character (i.e. "!@#$%^&*")'),
 check('confirmPassword')
   .exists({ checkFalsy: true })
   .withMessage('Please enter a Confirm Password')
@@ -75,13 +75,13 @@ check('confirmPassword')
 ]
 
 router.post('/signup',userValidator,csrfProtection, asyncHandler(async(req,res)=>{
-  const {firstName, lastName, email, username, profileUrl, password} = req.body;
+  const {firstName, lastName, email, userName, profileUrl, password} = req.body;
 
   const user = await db.User.build({
     firstName,
     lastName,
     email,
-    username,
+    userName,
     profileUrl
   })
   const validatorErr = validationResult(req);
@@ -90,8 +90,8 @@ router.post('/signup',userValidator,csrfProtection, asyncHandler(async(req,res)=
     const hashedPassword = await bcrypt.hash(password,12);
     user.hashedPassword = hashedPassword;
     await user.save();
-    loginUser();
-    res.redirect('/questions');
+    loginUser(req,res,user);
+    res.redirect('/');
 
   }else{
     const errors = validatorErr.array().map((err)=> err.msg);
