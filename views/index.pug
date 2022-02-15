@@ -9,6 +9,11 @@ append head
 block content
   h1= title
   p Please Log in
+    div.error-container
+      if errors
+          ul
+              each error in errors
+                  li= error
     form(action="/", method="post")
       input(type="hidden" name="_csrf" value=csrfToken)
       label(for="userName") Username
