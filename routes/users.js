@@ -24,7 +24,7 @@ router.get('/signup',csrfProtection, (req,res)=>{
 })
 
 const userValidator= [
-  check('firstName')
+check('firstName')
   .exists({ checkFalsy: true })
   .withMessage('Please enter a First Name')
   .isLength({ max: 50 })
