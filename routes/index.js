@@ -10,7 +10,7 @@ const bcrypt = require('bcryptjs');
 const loginValidators = [
   check('userName')
     .exists({ checkFalsy: true })
-    .withMessage('Please enter an Email Address'),
+    .withMessage('Please enter a Username'),
   check('password')
     .exists({ checkFalsy: true })
     .withMessage('Please enter a Password'),
