@@ -14,12 +14,11 @@ html
           a(class='profile' href='/profile') Profile
           a(class='questions' href='/questions') Questions
         else
-          a(class='profile' href='/profile') Profile
           a(class='questions' href='/questions') Questions
       input(type="text" name="search" class="search-bar" placeholder="Search")
       div(class="nav-buttons")
         if locals.authenticated
-          a(class='logout button' href='/') Log-Out
+          a(class='logout button' href='/logout') Log-Out
         else
           a(class='login button' href='/') Log-In
           a(class='signup button' href='/users/signup') Sign-Up
