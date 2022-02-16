@@ -12,7 +12,7 @@ router.get('/', asyncHandler(async (req, res) => {
         include: [db.Answer, db.User]
     });
     console.log('QQQQQQQQQQQQQQQ', questions);
-    res.render('questions', { questions, title: 'questions' });
+    res.render('questions', { questions, title: 'Questions' });
 }));
 
 
