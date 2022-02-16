@@ -1,0 +1,16 @@
+extends layout.pug
+
+block content
+    form(action=`/answer/${answer.id}/edit` method="post")
+        input(type="hidden" name="_csrf" value=csrfToken)
+        label(for="message") Answer:
+        input(type="text" name="message" value=answer.message)
+        label(for="answerImg1") img url:
+        input(type="text" name="answerImg1" value=answer.answerImg1)
+        label(for="answerImg2") img url:
+        input(type="text" name="answerImg2" value=answer.answerImg2)
+        label(for="answerImg3") img url:
+        input(type="text" name="answerImg3" value=answer.answerImg3)
+        button(type="submit" class="edit-answer") Edit Answer
+        div(class="cancel-edit")
+            a(href=`/answer/${answer.id}`) Cancel

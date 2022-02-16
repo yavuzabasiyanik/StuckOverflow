@@ -1,17 +1,43 @@
 extends layout.pug
 
 block content
-    h1 QUESTION
+    h1(class="Q_A__title") QUESTION
     div(class="question-container")
         div(class="title-profile")
             div
-              h4=question.title
+                h2(class="question-title-db-mp")=question.title
             div= question.User.userName
             if locals.authenticated
                 if userId === question.User.id
                     div(class="edit-question")
                         a(href=`/questions/${question.id}/edit`) Edit
                     div(class="delete-question")
-                        a(href=`/questions/${question.id}/delete`) DELETE
+                        a(href=`/questions/${question.id}/delete`) Delete
         div(class="question-body")
             div= question.message
+            div(class='images-container')
+                img(src=`${question.questionImg1}`)
+                img(src=`${question.questionImg2}`)
+                img(src=`${question.questionImg3}`)
+        div
+        if locals.authenticated
+            if userId !== question.userId
+                div(class="answer-a-question orange-button")
+                    a(href=`/questions/${question.id}/answer`) Answer a Question
+    h1(class="Q_A__title") ANSWERS
+    div(class="answers-container")
+        if answers
+            each answer in answers
+                div
+                    div=answer.message
+                    div(class="user__info")
+                        if locals.authenticated
+                            if userId === answer.userId
+                                div(class="edit-answer orange-button")
+                                    a(href=`/answers/${answer.id}/edit`) Edit
+                                //- div(class="delete-question")
+                                //-     a(href=`/answers/${answer.id}/delete`) Delete
+                div(class='images-container')
+                    img(src=`${answer.answerImg1}`)
+                    img(src=`${answer.answerImg2}`)
+                    img(src=`${answer.answerImg3}`)

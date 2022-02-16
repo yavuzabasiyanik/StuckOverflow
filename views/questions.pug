@@ -6,7 +6,7 @@ block content
             button(type="submit") Ask a Question
     each question in questions
         div
-            div= `Answers for Question ${question.id}: ${question.Answers.length}`
-            a(href=`/questions/${question.id}`)= question.title
+            a(class='question-title-db-mp' href=`/questions/${question.id}`)= question.title
             div= question.message
             div= `Username: ${question.User.userName}`
+            div= `Number of Answers for Question ${question.id}: ${question.Answers.length}`
