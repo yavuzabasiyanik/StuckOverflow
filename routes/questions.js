@@ -98,7 +98,73 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
 //edit question
 
 router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const question = await db.Question.findByPk(id);
 
+    res.render('question-edit',{
+        title:'Edit Question',
+        csrfToken:req.csrfToken(),
+        question
+    })
+}));
+router.post('/:id(\\d+)/edit', questionValidator,csrfProtection, asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const question = await db.Question.findByPk(id);
+
+    const {
+        title,
+        questionImg1,
+        questionImg2,
+        questionImg3,
+        message,
+    } = req.body;
+
+
+
+    const validationErr = validationResult(req);
+
+    if (validationErr.isEmpty()) {
+        await question.update({
+            title,
+            questionImg1,
+            questionImg2,
+            questionImg3,
+            message,
+        });
+
+        await question.save();
+        res.redirect(`/questions/${question.id}`)
+    } else {
+        const errors = validationErr.array().map(err => err.msg);
+        res.render('question-edit', {
+            title: 'Edit Question',
+            errors,
+            question,
+            csrfToken: req.csrfToken()
+        });
+    }
+
+
+}));
+
+router.get(`/:id(\\d+)/delete`, asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const question = await db.Question.findByPk(id);
+
+    res.render('question-delete',{
+        title:'Delete Question',
+        question,
+    })
+}));
+
+
+router.post(`/:id(\\d+)/delete`, asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const question = await db.Question.findByPk(id);
+
+    await question.destroy();
+
+    res.redirect('/questions');
 }));
 
 
