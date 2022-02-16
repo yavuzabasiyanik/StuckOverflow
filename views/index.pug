@@ -35,7 +35,7 @@ html
             if errors
                 ul
                     each error in errors
-                        li= error
+                        li(class="error")= error
           form(action="/", method="post")
             input(type="hidden" name="_csrf" value=csrfToken)
             label(for="userName") Username
