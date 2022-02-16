@@ -20,17 +20,29 @@ const loginValidators = [
 
 /* GET log in. */
 router.get('/',csrfProtection, (req, res) => {
+  console.log("made it to login", res.locals.authenticated)
   res.render('index', {
     title: 'Log in',
     csrfToken:req.csrfToken(),
   });
 });
 
+router.get('/logout', (req, res) =>{
+  delete req.session.auth;
+  console.log("in logout router", req.session.auth)
+  // res.redirect('/users')
+  req.session.save(() => {
+      res.redirect('/')
+  })
+})
+
+
 router.post('/', csrfProtection, loginValidators, asyncHandler(async (req, res) => {
   const { userName, password } = req.body;
 
   const validatorErrors = validationResult(req);
 
+  let errors = [];
 
   if (validatorErrors.isEmpty()) {
     const user = await db.User.findOne({
@@ -39,25 +51,29 @@ router.post('/', csrfProtection, loginValidators, asyncHandler(async (req, res) 
       }
     });
 
+
     if (user) {
       const isPassword = await bcrypt.compare(password, user.hashedPassword.toString());
       if (isPassword) {
         loginUser(req, res, user);
-        res.redirect('/questions');
+
+       req.session.save(() => {
+      res.redirect('/questions')
+    })
       }
     }
     //Otherwise display error
-    errors.push('Login failed for the provided username and password');
   } else {
+    errors.push('Login failed for the provided username and password');
     errors = validatorErrors.array().map((error) => error.msg);
+    
+    res.render('index', {
+      title: 'Login',
+      userName,
+      errors,
+      csrfToken: req.csrfToken(),
+    });
   }
-
-  res.render('index', {
-    title: 'Login',
-    userName,
-    errors,
-    csrfToken: req.csrfToken(),
-  });
 }));
 
 

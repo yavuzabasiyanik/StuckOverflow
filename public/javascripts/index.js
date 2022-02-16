@@ -15,8 +15,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
         res.redirect('/questions');
     });
 
-    const logout = document.querySelector('.logout');
-    logout.addEventListener('click', event => {
-        logoutUser();
-    });
+    // const logout = document.querySelector('.logout');
+    // logout.addEventListener('click', event => {
+    //     logoutUser();
+    // });
 })
