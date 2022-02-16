@@ -1,0 +1,17 @@
+extends layout.pug
+
+block content
+    h1 QUESTION
+    div(class="question-container")
+        div(class="title-profile")
+            div
+              h4=question.title
+            div= question.User.userName
+            if locals.authenticated
+                if userId === question.User.id
+                    div(class="edit-question")
+                        a(href=`/questions/${question.id}/edit`) Edit
+                    div(class="delete-question")
+                        a(href=`/questions/${question.id}/delete`) DELETE
+        div(class="question-body")
+            div= question.message
