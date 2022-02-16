@@ -65,7 +65,7 @@ a {
     margin: 25% auto;
     position: relative;
     background : #FFFFFF;
-    background : rgba(255, 255, 255, 0.5);
+    background : rgba(255, 255, 255, 0.8);
     border-style : Solid;
     border-color : #231F20;
     border-color : rgba(35, 31, 32, 1);
@@ -110,4 +110,9 @@ form {
   -webkit-border-radius : 2px;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF9800',endColorstr='#FF6500' , GradientType=0);
 
+}
+
+.error {
+    color: red;
+    font-weight: bolder;
 }
