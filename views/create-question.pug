@@ -2,16 +2,16 @@ extends layout.pug
 
 block content
 
-    form(action="/questions/ask" method="post")
+    form(action="/questions/ask" method="post" class="q-a-forms")
         input(type="hidden" name="_csrf" value=csrfToken)
         label(for="title") Question Title
         input(type="text" name="title" value=title required)
-        label(for="message") Question body
-        input(type="text" name="message" value=message required)
+        label(for="message") Question:
+        textarea(name="message" value=message required)
         label(for="questionImg1") img url:
         input(type="text" name="questionImg1" value=questionImg1)
         label(for="questionImg2") img url:
         input(type="text" name="questionImg2" value=questionImg2)
         label(for="questionImg3") img url:
         input(type="text" name="questionImg3" value=questionImg3)
-        button(type="submit" class="create-question") Ask Question
+        button(type="submit" class="orange-button") Ask Question

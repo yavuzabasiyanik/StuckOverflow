@@ -4,6 +4,9 @@ html
       block head
         title=title
         link(rel='stylesheet' href='/stylesheets/layout.css')
+        link(rel="preconnect" href="https://fonts.googleapis.com")
+        link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+        link(href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet")
   body(class="login-bg")
     nav(class='nav-bar')
       //- svg(width="24px", height="24px")
@@ -15,20 +18,20 @@ html
           a(class='questions' href='/questions') Questions
         else
           a(class='questions' href='/questions') Questions
-          input(type="text" name="search" class="search-bar" placeholder="Search")
-        if locals.authenticated
-          a(class='logout button' href='/logout') Log-Out
-        else
-          div(class='demo-button')
-            form(action="/", method="post")
+      input(type="text" name="search" class="search-bar" placeholder="Search")
+      if locals.authenticated
+        a(class='logout-button' href='/logout') Log out
+      else
+        div(class="nav-buttons")
+          div
+            form(action="/", method="post" )
               input(type="hidden" name="_csrf" value=csrfToken)
               input(type="hidden" name="userName" value="sifuhotman")
               input(type="hidden" name="password" value="password")
-              button(type="submit" class="demo button login") Demo
-
-          div(class="nav-buttons")
-            a(class='login button' href='/') Log-In
-            a(class='signup button' href='/users/signup') Sign-Up
+              button(type="submit" class="grey-button") Demo
+          div
+            a(class='nav-login' href='/') Login
+            a(class='grey-button' href='/users/signup') Sign up
 
     div(class="Login-form")
           h1= title
@@ -37,10 +40,10 @@ html
                 ul
                     each error in errors
                         li(class="error")= error
-          form(action="/", method="post")
+          form(action="/", method="post" class="login-form-fields")
             input(type="hidden" name="_csrf" value=csrfToken)
             label(for="userName") Username
-            input(type="text" name="userName" value=userName placeholder="Username")
+            input(type="text" name="userName" value=userName)
             label(for="password") Password
-            input(type="password" name="password" placeholder="password")
-            button(type="submit" class="login-button") Log-in!
+            input(type="password" name="password")
+            button(type="submit" class="orange-button") Login
