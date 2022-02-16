@@ -22,7 +22,7 @@ const loginValidators = [
 router.get('/', csrfProtection, (req, res) => {
   // console.log("made it to login", res.locals.authenticated)
   res.render('index', {
-    title: 'Log in',
+    title: 'Login',
     csrfToken: req.csrfToken(),
   });
 });

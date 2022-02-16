@@ -4,6 +4,9 @@ html
       block head
         title=title
         link(rel='stylesheet' href='/stylesheets/layout.css')
+        link(rel="preconnect" href="https://fonts.googleapis.com")
+        link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+        link(href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet")
   body
     nav(class='nav-bar')
       //- svg(width="24px", height="24px")
@@ -18,7 +21,7 @@ html
       input(type="text" name="search" class="search-bar" placeholder="Search")
       div(class="nav-buttons")
         if locals.authenticated
-          a(class='logout button' href='/logout') Log-Out
+          a(class='logout-button' href='/logout') Log out
         else
           a(class='login button' href='/') Log-In
           a(class='signup button' href='/users/signup') Sign-Up
