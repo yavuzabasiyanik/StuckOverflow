@@ -20,7 +20,7 @@ const loginValidators = [
 
 /* GET log in. */
 router.get('/', csrfProtection, (req, res) => {
-  console.log("made it to login", res.locals.authenticated)
+  // console.log("made it to login", res.locals.authenticated)
   res.render('index', {
     title: 'Log in',
     csrfToken: req.csrfToken(),
@@ -29,7 +29,7 @@ router.get('/', csrfProtection, (req, res) => {
 
 router.get('/logout', (req, res) => {
   delete req.session.auth;
-  console.log("in logout router", req.session.auth)
+  // console.log("in logout router", req.session.auth)
   // res.redirect('/users')
   req.session.save(() => {
     res.redirect('/')
@@ -61,7 +61,7 @@ router.post('/', csrfProtection, loginValidators, asyncHandler(async (req, res) 
           res.redirect('/questions')
         })
       } else {
-        let errors = ['Wrong Password']
+        let errors = ['Incorrect Password']
         res.render ('index', {
           title: 'Login',
           userName,
@@ -70,7 +70,7 @@ router.post('/', csrfProtection, loginValidators, asyncHandler(async (req, res) 
         });
       }
     } else {
-      let errors = ['Username not found']
+      let errors = ['User not found']
       res.render ('index', {
         title: 'Login',
         userName,
