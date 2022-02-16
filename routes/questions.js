@@ -16,6 +16,12 @@ const questionValidator = [
         .withMessage('Please enter a Message'),
 ];
 
+const answerValidator = [
+    check('message')
+        .exists({ checkFalsy: true })
+        .withMessage('Please enter a Message'),
+];
+
 //routes
 
 //questions lists
@@ -83,14 +89,14 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
 
     const answers = await db.Answer.findAll({
         where: {
-            id: question.id
+            questionId: question.id
         }
     });
-
+    console.log(answers);
     let userId;
 
     if (req.session.auth) {
-        userId = req.session.auth.userId
+        userId = req.session.auth.userId;
     }
 
     res.render('individual-question', {
@@ -171,11 +177,47 @@ router.post(`/:id(\\d+)/delete`, asyncHandler(async (req, res) => {
 router.get('/:id(\\d+)/answer', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
     const questionId = parseInt(req.params.id);
 
-    console.log('111111111111111111111111111111111111111111', questionId)
     res.render('answer-form', {
         title: 'Answer a Question',
-        csrfToken: req.csrfToken()
+        csrfToken: req.csrfToken(),
+        questionId
     });
+}));
+
+router.post('/:id(\\d+)/answer', answerValidator, csrfProtection, asyncHandler(async (req, res) => {
+    const {
+        message,
+        answerImg1,
+        answerImg2,
+        answerImg3,
+    } = req.body;
+
+    const userId = req.session.auth.userId;
+    const questionId = parseInt(req.params.id);
+
+    const answer = await db.Answer.build({
+        message,
+        answerImg1,
+        answerImg2,
+        answerImg3,
+        userId,
+        questionId
+    });
+
+    const validationErr = validationResult(req);
+
+    if (validationErr.isEmpty()) {
+        await answer.save();
+        res.redirect(`/questions/${questionId}`);
+    } else {
+        const errors = validationErr.array().map(err => err.msg);
+        res.render('create-answer', {
+            title: 'Answer question',
+            errors,
+            answer,
+            csrfToken: req.csrfToken()
+        });
+    }
 }));
 
 //  Edit Answers
