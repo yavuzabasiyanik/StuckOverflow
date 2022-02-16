@@ -1,10 +1,17 @@
 extends layout.pug
 
 block content
-    button(type="submit" href="/questions/ask") Ask a Question
+    form(action="/questions/ask" method="post") 
+        button(type="submit" class="ask") Ask a Question
     each question in questions
-        div
-            div= `Answers for Question ${question.id}: ${question.Answers.length}`
-            a(href=`/questions/${question.id}`)= question.title
-            div= question.message
-            div= `Username: ${question.User.userName}`
+        div(class="question-container")
+            div(class="answer-qty-box")
+                div= `Answers:`
+                div= `Qty: ${question.Answers.length}`
+            div(class="question-content")
+                div
+                    h3
+                        a(href=`/questions/${question.id}`)= question.title
+                    div= question.message
+            div(class="question-user")= `User: ${question.User.userName}`
+                           
