@@ -1,0 +1,4 @@
+p Are you sure you want to delete your question?
+form(action=`/questions/${question.id}/delete` method="post")
+    button(type="submit") Yes
+a(href=`/questions/${question.id}`) No
