@@ -1,12 +1,18 @@
 extends layout.pug
 
 block content
-    div(class="ask-button")
-        form(action="/questions/ask" method="get")
-            button(type="submit") Ask a Question
-    each question in questions
-        div
-            div= `Answers for Question ${question.id}: ${question.Answers.length}`
-            a(href=`/questions/${question.id}`)= question.title
-            div= question.message
-            div= `Username: ${question.User.userName}`
+    div(class='questions-header')
+        h1 QUESTIONS
+        div(class='ask')
+            form(action="/questions/ask" method="get")
+                button(type="submit" class="ask-button") Ask a Question
+    div(class='question-list-body')
+        each question in questions
+            div(class="question-container")
+                div(class= 'answer-total')= `Answers: ${question.Answers.length}`
+                div(class='question-content')
+                    a(href=`/questions/${question.id}` class='question-title')= question.title
+                    p= question.message
+                div(class='question-list-user')
+                    img(src="/images/Logo.svg", alt="profile pic")
+                    p(class="user-name")= question.User.userName
