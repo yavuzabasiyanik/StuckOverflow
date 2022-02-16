@@ -9,10 +9,17 @@ const { loginUser, logoutUser } = require('../auth');
 
 router.get('/', asyncHandler(async (req, res) => {
     const questions = await db.Question.findAll({
-        include: [db.Answer, db.User]
+        include: [db.Answer, db.User],
+        order: [['updatedAt', 'DESC']]
     });
-    console.log('QQQQQQQQQQQQQQQ', questions);
+    // console.log('QQQQQQQQQQQQQQQ', questions);
     res.render('questions', { questions, title: 'questions' });
+}));
+
+router.get('/ask', asyncHandler(async(req, res) => {
+    res.render('create-question', {
+        title: 'Create a Question',
+    });
 }));
 
 

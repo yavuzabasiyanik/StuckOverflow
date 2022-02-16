@@ -15,19 +15,20 @@ html
           a(class='questions' href='/questions') Questions
         else
           a(class='questions' href='/questions') Questions
-      input(type="text" name="search" class="search-bar" placeholder="Search")
-      div(class="nav-buttons")
+          input(type="text" name="search" class="search-bar" placeholder="Search")
         if locals.authenticated
           a(class='logout button' href='/logout') Log-Out
         else
-          form(action="/", method="post")
-            input(type="hidden" name="_csrf" value=csrfToken)
-            input(type="hidden" name="userName" value="sifuhotman") 
-            input(type="hidden" name="password" value="password") 
-            button(type="submit" class="demo button login") Demo
+          div(class='demo-button')
+            form(action="/", method="post")
+              input(type="hidden" name="_csrf" value=csrfToken)
+              input(type="hidden" name="userName" value="sifuhotman")
+              input(type="hidden" name="password" value="password")
+              button(type="submit" class="demo button login") Demo
 
-          a(class='login button' href='/') Log-In
-          a(class='signup button' href='/users/signup') Sign-Up
+          div(class="nav-buttons")
+            a(class='login button' href='/') Log-In
+            a(class='signup button' href='/users/signup') Sign-Up
 
     div(class="Login-form")
           h1= title
@@ -39,7 +40,7 @@ html
           form(action="/", method="post")
             input(type="hidden" name="_csrf" value=csrfToken)
             label(for="userName") Username
-            input(type="text" name="userName" placeholder="Username")
+            input(type="text" name="userName" value=userName placeholder="Username")
             label(for="password") Password
             input(type="password" name="password" placeholder="password")
             button(type="submit" class="login-button") Log-in!

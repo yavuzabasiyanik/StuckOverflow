@@ -23,6 +23,18 @@ a {
 
 .nav-buttons {
     margin: 0px 15px;
+    position: fixed;
+    right: 0;
+}
+
+.search-bar {
+    margin: 20px;
+}
+
+.demo-button {
+    display:flex;
+    justify-content: flex-end;
+
 }
 
 .button {
@@ -115,4 +127,9 @@ form {
 .error {
     color: red;
     font-weight: bolder;
+    font-size: 15px;
+}
+
+.ask-button {
+    width: 200px;
 }
