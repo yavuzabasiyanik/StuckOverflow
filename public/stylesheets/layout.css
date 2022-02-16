@@ -193,7 +193,7 @@ form {
     color: white;
     margin: 0px 5px;
     /* padding: 4px; */
-
+}
 .login-button {
   background : -moz-linear-gradient(50% 100% 90deg,rgba(255, 101, 0, 1) 0%,rgba(255, 152, 0, 1) 100%);
   background : -webkit-linear-gradient(90deg, rgba(255, 101, 0, 1) 0%, rgba(255, 152, 0, 1) 100%);
@@ -247,7 +247,7 @@ form {
 textarea {
     width: 640px;
     height: 200px;
-
+}
 .edit-question {
     background : -moz-linear-gradient(50% 100% 90deg,rgba(255, 101, 0, 1) 0%,rgba(255, 152, 0, 1) 100%);
   background : -webkit-linear-gradient(90deg, rgba(255, 101, 0, 1) 0%, rgba(255, 152, 0, 1) 100%);
