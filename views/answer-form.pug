@@ -2,7 +2,7 @@ extends layout.pug
 
 block content
 
-    form(action="/questions/answer" method="post" class="q-a-forms")
+    form(action=`/questions/${questionId}/answer` method="post" class="q-a-forms")
         input(type="hidden" name="_csrf" value=csrfToken)
         label Answering Question: #{title}
         label(for="message") Answer:

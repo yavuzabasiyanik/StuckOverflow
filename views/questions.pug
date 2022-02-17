@@ -1,6 +1,17 @@
 extends layout.pug
 
 block content
+
+    div(class="ask-button")
+        form(action="/questions/ask" method="get")
+            button(type="submit") Ask a Question
+    each question in questions
+        div
+            a(class='question-title-db-mp' href=`/questions/${question.id}`)= question.title
+            div= question.message
+            div= `Username: ${question.User.userName}`
+            div= `Number of Answers for Question ${question.id}: ${question.Answers.length}`
+
     div(class='questions-header')
         h1 QUESTIONS
         div(class='ask')
@@ -16,3 +27,4 @@ block content
                 div(class='question-list-user')
                     img(src="/images/Logo.svg", alt="profile pic")
                     p(class="user-name")= question.User.userName
+

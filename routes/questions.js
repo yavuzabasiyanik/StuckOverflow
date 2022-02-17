@@ -9,14 +9,18 @@ const { loginUser, logoutUser, requireAuth } = require('../auth');
 //validators
 const questionValidator = [
     check('title')
-      .exists({ checkFalsy: true })
-      .withMessage('Please enter a Title'),
+        .exists({ checkFalsy: true })
+        .withMessage('Please enter a Title'),
     check('message')
-      .exists({ checkFalsy: true })
-      .withMessage('Please enter a Message'),
-  ];
+        .exists({ checkFalsy: true })
+        .withMessage('Please enter a Message'),
+];
 
-
+const answerValidator = [
+    check('message')
+        .exists({ checkFalsy: true })
+        .withMessage('Please enter a Message'),
+];
 
 //routes
 
@@ -32,7 +36,7 @@ router.get('/', asyncHandler(async (req, res) => {
 
 
 //ask questions
-router.get('/ask', requireAuth, csrfProtection, asyncHandler(async(req, res) => {
+router.get('/ask', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
     res.render('create-question', {
         title: 'Ask a Question',
         csrfToken: req.csrfToken()
@@ -78,36 +82,44 @@ router.post('/ask', questionValidator, csrfProtection, asyncHandler(async (req, 
 //individual questions
 router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
     const id = parseInt(req.params.id);
+
     const question = await db.Question.findByPk(id, {
-        include: db.User,
+        include: [db.User, db.Answer]
     });
 
+    const answers = await db.Answer.findAll({
+        where: {
+            questionId: question.id
+        }
+    });
+    console.log(answers);
     let userId;
 
     if (req.session.auth) {
-        userId = req.session.auth.userId
+        userId = req.session.auth.userId;
     }
 
     res.render('individual-question', {
         title: question.title,
         question,
-        userId
+        userId,
+        answers
     });
 }));
 
 //edit question
-
 router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res) => {
     const id = req.params.id;
     const question = await db.Question.findByPk(id);
 
-    res.render('question-edit',{
-        title:'Edit Question',
-        csrfToken:req.csrfToken(),
+    res.render('question-edit', {
+        title: 'Edit Question',
+        csrfToken: req.csrfToken(),
         question
-    })
+    });
 }));
-router.post('/:id(\\d+)/edit', questionValidator,csrfProtection, asyncHandler(async (req, res) => {
+
+router.post('/:id(\\d+)/edit', questionValidator, csrfProtection, asyncHandler(async (req, res) => {
     const id = req.params.id;
     const question = await db.Question.findByPk(id);
 
@@ -118,8 +130,6 @@ router.post('/:id(\\d+)/edit', questionValidator,csrfProtection, asyncHandler(as
         questionImg3,
         message,
     } = req.body;
-
-
 
     const validationErr = validationResult(req);
 
@@ -133,7 +143,7 @@ router.post('/:id(\\d+)/edit', questionValidator,csrfProtection, asyncHandler(as
         });
 
         await question.save();
-        res.redirect(`/questions/${question.id}`)
+        res.redirect(`/questions/${question.id}`);
     } else {
         const errors = validationErr.array().map(err => err.msg);
         res.render('question-edit', {
@@ -143,20 +153,17 @@ router.post('/:id(\\d+)/edit', questionValidator,csrfProtection, asyncHandler(as
             csrfToken: req.csrfToken()
         });
     }
-
-
 }));
 
 router.get(`/:id(\\d+)/delete`, asyncHandler(async (req, res) => {
     const id = req.params.id;
     const question = await db.Question.findByPk(id);
 
-    res.render('question-delete',{
-        title:'Delete Question',
+    res.render('question-delete', {
+        title: 'Delete Question',
         question,
-    })
+    });
 }));
-
 
 router.post(`/:id(\\d+)/delete`, asyncHandler(async (req, res) => {
     const id = req.params.id;
@@ -166,6 +173,122 @@ router.post(`/:id(\\d+)/delete`, asyncHandler(async (req, res) => {
 
     res.redirect('/questions');
 }));
+
+// Create New Answer
+router.get('/:id(\\d+)/answer', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
+    const questionId = parseInt(req.params.id);
+
+    res.render('answer-form', {
+        title: 'Answer a Question',
+        csrfToken: req.csrfToken(),
+        questionId
+    });
+}));
+
+router.post('/:id(\\d+)/answer', answerValidator, csrfProtection, asyncHandler(async (req, res) => {
+    const {
+        message,
+        answerImg1,
+        answerImg2,
+        answerImg3,
+    } = req.body;
+
+    const userId = req.session.auth.userId;
+    const questionId = parseInt(req.params.id);
+
+    const answer = await db.Answer.build({
+        message,
+        answerImg1,
+        answerImg2,
+        answerImg3,
+        userId,
+        questionId
+    });
+
+    const validationErr = validationResult(req);
+
+    if (validationErr.isEmpty()) {
+        await answer.save();
+        res.redirect(`/questions/${questionId}`);
+    } else {
+        const errors = validationErr.array().map(err => err.msg);
+        res.render('create-answer', {
+            title: 'Answer question',
+            errors,
+            answer,
+            csrfToken: req.csrfToken()
+        });
+    }
+}));
+
+//  Edit Answers
+router.get(`/answers/:id(\\d+)/edit`, csrfProtection, asyncHandler(async (req, res) => {
+
+    const id = parseInt(req.params.id);
+
+    const answer = await db.Answer.findByPk(id);
+
+    res.render('answers-edit', {
+        title: 'Edit Answer',
+        csrfToken: req.csrfToken(),
+        answer,
+    });
+}));
+
+
+router.post(`/answers/:id(\\d+)/edit`, answerValidator, csrfProtection, asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const answer = await db.Answer.findByPk(id);
+
+    const {
+        message,
+        answerImg1,
+        answerImg2,
+        answerImg3,
+    } = req.body;
+
+    const validationErr = validationResult(req);
+
+    if (validationErr.isEmpty()) {
+        await answer.update({
+            message,
+            answerImg1,
+            answerImg2,
+            answerImg3,
+        });
+
+        await answer.save();
+        res.redirect(`/questions/${answer.questionId}`);
+    } else {
+        const errors = validationErr.array().map(err => err.msg);
+        res.render('answers-edit', {
+            title: 'Edit Answer',
+            errors,
+            answer,
+            csrfToken: req.csrfToken()
+        });
+    }
+}));
+
+router.get(`/answers/:id(\\d+)/delete`, asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const answer = await db.Answer.findByPk(id);
+
+    res.render('answer-delete', {
+        title: 'Delete answer',
+        answer,
+    });
+}));
+
+router.post(`/answers/:id(\\d+)/delete`, asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const answer = await db.Answer.findByPk(id);
+
+    await answer.destroy();
+
+    res.redirect(`/questions/${answer.questionId}`);
+}));
+
 
 
 module.exports = router;

@@ -2,25 +2,26 @@
 extends layout.pug
 
 block content
-    div.error-container
-        if errors
-            ul
-                each error in errors
-                    li= error
-    form(action="/users/signup" method="post")
-        input(type="hidden" name="_csrf" value=csrfToken)
-        label(for="firstName") First Name
-        input(type="text" name="firstName" value=user.firstName)
-        label(for="lastName") Last Name
-        input(type="text" name="lastName" value=user.lastName )
-        label(for="email") Email
-        input(type="email" name="email" value=user.email )
-        label(for="userName") Username
-        input(type="text" name="userName" value=user.userName )
-        label(for="profileUrl") Profile Img
-        input(type="text" name="profileUrl" value=user.profileUrl)
-        label(for="password") Password
-        input(type="password" name="password" )
-        label(for="confirmPassword") Confirm Password
-        input(type="password" name="confirmPassword" )
-        button(type="submit") Register
+    div(class="Signup-form")
+        div.error-container
+            if errors
+                ul
+                    each error in errors
+                        li= error
+        form(action="/users/signup" method="post")
+            input(type="hidden" name="_csrf" value=csrfToken)
+            label(for="firstName") First Name
+            input(type="text" name="firstName" value=user.firstName)
+            label(for="lastName") Last Name
+            input(type="text" name="lastName" value=user.lastName )
+            label(for="email") Email
+            input(type="email" name="email" value=user.email )
+            label(for="userName") Username
+            input(type="text" name="userName" value=user.userName )
+            label(for="profileUrl") Profile Img
+            input(type="text" name="profileUrl" value=user.profileUrl)
+            label(for="password") Password
+            input(type="password" name="password" )
+            label(for="confirmPassword") Confirm Password
+            input(type="password" name="confirmPassword" )
+            button(type="submit") Register

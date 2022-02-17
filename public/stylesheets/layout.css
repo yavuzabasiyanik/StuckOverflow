@@ -171,6 +171,27 @@ a {
     -webkit-border-radius : 13px;
 }
 
+.Signup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20% auto;
+    position: relative;
+    background : #FFFFFF;
+    background : rgba(255, 255, 255, 0.5);
+    border-style : Solid;
+    border-color : #000000;
+    border-color : rgba(0, 0, 0, 1);
+    border-width : 1px;
+    width : 680px;
+    height : 513px;
+    border-radius : 13px;
+    -moz-border-radius : 13px;
+    -webkit-border-radius : 13px;
+
+}
+
 .Login-form > * {
     padding-bottom: 10px;
 }
@@ -226,7 +247,7 @@ form {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background : -moz-linear-gradient(50% 100% 90deg,rgba(51, 51, 51, 1) 0%,rgba(153, 153, 153, 1) 100%);
+    background : -moz-linear-gradient(50% 100% 90deg,rgba(100, 51, 51, 1) 0%,rgba(153, 153, 153, 1) 100%);
     background : -webkit-linear-gradient(90deg, rgba(51, 51, 51, 1) 0%, rgba(153, 153, 153, 1) 100%);
     background : -webkit-gradient(linear,50% 100% ,50% 0% ,color-stop(0,rgba(51, 51, 51, 1) ),color-stop(1,rgba(153, 153, 153, 1) ));
     background : -o-linear-gradient(90deg, rgba(51, 51, 51, 1) 0%, rgba(153, 153, 153, 1) 100%);
@@ -362,6 +383,11 @@ textarea {
 
 }
 
+
+.question-title-db-mp {
+    font-weight: bolder;
+    font-size: larger;
+
 .questions-header {
     display: flex;
     justify-content: space-between;
@@ -437,4 +463,5 @@ textarea {
 
 .user-name {
     font-size: 10px;
+
 }

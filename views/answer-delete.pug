@@ -1,0 +1,4 @@
+p Are you sure you want to delete your answer?
+form(action=`/questions/answers/${answer.id}/delete` method="post")
+    button(type="submit") Yes
+a(href=`/questions/${answer.questionId}`) No
