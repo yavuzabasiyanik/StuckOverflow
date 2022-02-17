@@ -30,7 +30,7 @@ router.get('/', csrfProtection, asyncHandler(async (req, res) => {
         include: [db.Answer, db.User],
         order: [['updatedAt', 'DESC']]
     });
-    // console.log('QQQQQQQQQQQQQQQ', questions);
+
     res.render('questions', {
         questions,
         title: 'questions',
@@ -90,49 +90,57 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
     const question = await db.Question.findByPk(id, {
         include: [
             db.User,
-            db.Answer,
+            {model:db.Answer,
+            include:[db.Upvote,db.Downvote]},
         ]
     });
+
+    console.log("============================", question.Answers[0].Upvotes.length);
+    console.log("============================", question.Answers[0].Downvotes.length);
 
     const answers = await db.Answer.findAll({
         where: {
             questionId: question.id
         }
     });
-    let userId;
+    // const voteCount = ()=>{
 
-    let votes = 0;
-    answers.forEach(async answer => {
+    //     let vote = 0;
+    //     answers.forEach(async answer => {
 
-        const id = answer.id;
-        const upvotes = await db.Upvote.findAll({
-            where: {
-                answerId:id
-            }
-        });
+    //         const id = answer.id;
+    //         const upvotes = await db.Upvote.findAll({
+    //             where: {
+    //                 answerId:id
+    //             }
+    //         });
 
-        const downvotes = await db.Downvote.findAll({
-            where: {
-                answerId: id
-            }
-        });
+    //         const downvotes = await db.Downvote.findAll({
+    //             where: {
+    //                 answerId: id
+    //             }
+    //         });
 
-        console.log('upvotes length:' , upvotes.length, 'answerId: ', id);
-        console.log('downvotes length:' , downvotes.length, 'answerId:', id);
-        votes += upvotes.length
-        console.log(votes);
-    })
+    //         console.log('upvotes length:' , upvotes.length, 'answerId: ', id);
+    //         console.log('downvotes length:' , downvotes.length, 'answerId:', id);
+    //         vote += upvotes.length
+    //     })
+
+    //     return vote;
+    // }
+
 
     if (req.session.auth) {
         userId = req.session.auth.userId;
     }
+    // const returnVote = voteCount()
 
     res.render('individual-question', {
         title: question.title,
         question,
         userId,
+        // returnVote,
         answers,
-        votes
     });
 }));
 
@@ -147,6 +155,43 @@ router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res) => {
         question
     });
 }));
+
+//sending json
+router.get('/answer/:id(\\d+)/upVotes', csrfProtection, asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    // const question = await db.Question.findByPk(id);
+
+
+    const upVotes = await db.Upvote.findAll({
+        where:{
+            answerId:id
+        }
+    });
+
+
+    res.json({upVotes})
+
+
+}));
+
+router.get('/answer/:id(\\d+)/downVotes', csrfProtection, asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    // const question = await db.Question.findByPk(id);
+
+
+    const downVotes = await db.Downvote.findAll({
+        where:{
+            answerId:id
+        }
+    });
+
+    console.log(downVotes);
+
+    res.json({downVotes})
+
+
+}));
+
 
 router.post('/:id(\\d+)/edit', questionValidator, csrfProtection, asyncHandler(async (req, res) => {
     const id = req.params.id;
@@ -319,6 +364,49 @@ router.post(`/answers/:id(\\d+)/delete`, asyncHandler(async (req, res) => {
 }));
 
 
+router.get(`/api/:id(\\d+)`, asyncHandler(async (req, res) => {
+    const id = req.params.id;
+
+
+    const answers = await db.Answer.findAll({
+        where: {
+            questionId: id
+        }
+    });
+
+    console.log(answers);
+    res.json(answers)
+
+}));
+
+
+router.get(`/api/answers/:id(\\d+)/upVotes`, asyncHandler(async (req, res) => {
+    const id = req.params.id;
+
+
+    const upVotes = await db.Upvote.findAll({
+        where: {
+            answerId: id
+        }
+    });
+
+    res.json({data:upVotes})
+
+}));
+
+router.get(`/api/answers/:id(\\d+)/downVotes`, asyncHandler(async (req, res) => {
+    const id = req.params.id;
+
+
+    const downVotes = await db.Downvote.findAll({
+        where: {
+            answerId: id
+        }
+    });
+
+    res.json({data:downVotes})
+
+}));
 //votes
 
 

@@ -26,7 +26,7 @@ block content
     h1(class="Q_A__title") ANSWERS
     div(class="answers-container")
         if answers
-            each answer in answers
+            each answer in question.Answers
                 div(class='answer-box')
                     div(class='answer-message')=answer.message
                     div(class="user__info")
@@ -40,10 +40,12 @@ block content
                                     a(href=`/questions/answers/${answer.id}/delete`) Delete
                             else
                                 div(class="votes")
-                                    img(src="/images/upvote_active.svg" alt="upvote" class="upvote")
-                                    p=votes
-                                    img(src="/images/downvote_active.svg" alt="downvote" class="downvote")
+                                    //- img(src="/images/upvote_active.svg" alt="upvote" class="upvote")
+                                    a(href=`/questions/answer/${answer.id}/upVotes` class="votesClass") Upvotes
+                                    p(class="vote-count")=answer.Upvotes.length-answer.Downvotes.length
+                                    a(href=`/questions/answer/${answer.id}/downVotes` class="votesClass") Downvotes
                 div(class='images-container')
                     img(src=`${answer.answerImg1}`)
                     img(src=`${answer.answerImg2}`)
                     img(src=`${answer.answerImg3}`)
+    script(src="/javascripts/votes.js")
