@@ -25,13 +25,17 @@ const answerValidator = [
 //routes
 
 //questions lists
-router.get('/', asyncHandler(async (req, res) => {
+router.get('/', csrfProtection, asyncHandler(async (req, res) => {
     const questions = await db.Question.findAll({
         include: [db.Answer, db.User],
         order: [['updatedAt', 'DESC']]
     });
     // console.log('QQQQQQQQQQQQQQQ', questions);
-    res.render('questions', { questions, title: 'questions' });
+    res.render('questions', { 
+        questions, 
+        title: 'questions', 
+        csrfToken: req.csrfToken() 
+    });
 }));
 
 

@@ -3,9 +3,13 @@ extends layout.pug
 block content
     div(class='questions-header')
         h1 QUESTIONS
-        div(class='ask')
-            form(action="/questions/ask" method="get")
-                button(type="submit" class="ask-button") Ask a Question
+        if locals.authenticated
+            div(class='ask')
+                form(action="/questions/ask" method="get")
+                    button(type="submit" class="ask-button") Ask a Question
+        else
+            div(class='ask' role='button')
+                div(class='ask-public') Ask a Question         
     div(class='question-list-body')
         each question in questions
             div(class="question-container")
@@ -16,3 +20,20 @@ block content
                 div(class='question-list-user')
                     img(src="/images/Logo.svg", alt="profile pic")
                     p(class="user-name")= question.User.userName
+    div(class="question-login-container")                
+        div(class="question-login")
+            h4 Please Log in
+            div.error-container
+              if errors
+                  ul
+                      each error in errors
+                          li(class="error")= error
+            form(action="/", method="post" class="login-form-fields")
+              input(type="hidden" name="_csrf" value=csrfToken)
+              label(for="userName") Username
+              input(type="text" name="userName" value=userName)
+              label(for="password") Password
+              input(type="password" name="password")
+              button(type="submit" class="orange-button") Login
+            div(class="close grey-button") Cancel 
+    script(src="/javascripts/modal.js")             
