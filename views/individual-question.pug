@@ -4,9 +4,7 @@ block content
     h1(class="Q_A__title") QUESTION
     div(class="question-container")
         div(class="title-profile")
-            div
-                h2(class="question-title-db-mp")=question.title
-            div= question.User.userName
+            h4= question.User.userName
             if locals.authenticated
                 if userId === question.User.id
                     div(class="edit-question")
@@ -14,6 +12,7 @@ block content
                     div(class="delete-question")
                         a(href=`/questions/${question.id}/delete`) Delete
         div(class="question-body")
+            h2(class="question-title-db-mp")=question.title
             div= question.message
             div(class='images-container')
                 img(src=`${question.questionImg1}`)
@@ -28,15 +27,22 @@ block content
     div(class="answers-container")
         if answers
             each answer in answers
-                div
-                    div=answer.message
+                div(class='answer-box')
+                    div(class='answer-message')=answer.message
                     div(class="user__info")
                         if locals.authenticated
                             if userId === answer.userId
+                                div(class="answer-profile-pic")
+                                    //- img(src="", alt="")
                                 div(class="edit-answer orange-button")
                                     a(href=`/questions/answers/${answer.id}/edit`) Edit
                                 div(class="delete-answer orange-button")
                                     a(href=`/questions/answers/${answer.id}/delete`) Delete
+                            else
+                                div(class="votes")
+                                    img(src="/images/upvote_active.svg" alt="upvote" class="upvote")
+                                    p=votes
+                                    img(src="/images/downvote_active.svg" alt="downvote" class="downvote")
                 div(class='images-container')
                     img(src=`${answer.answerImg1}`)
                     img(src=`${answer.answerImg2}`)

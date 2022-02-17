@@ -1,0 +1,14 @@
+.answer-container {
+  display: flex;
+}
+
+.answer-total {
+  font-size: 15px;
+}
+
+.answer-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
