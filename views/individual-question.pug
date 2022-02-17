@@ -40,10 +40,12 @@ block content
                                     a(href=`/questions/answers/${answer.id}/delete`) Delete
                             else
                                 div(class="votes")
-                                    img(src="/images/upvote_active.svg" alt="upvote" class="upvote")
-                                    p=votes
-                                    img(src="/images/downvote_active.svg" alt="downvote" class="downvote")
+                                    //- img(src="/images/upvote_active.svg" alt="upvote" class="upvote")
+                                    a(href=`/questions/answer/${answer.id}/upVotes`) Upvotes
+                                    p(class="vote-count")=returnVote
+                                    a(href=`/questions/answer/${answer.id}/downVotes`) Downvotes
                 div(class='images-container')
                     img(src=`${answer.answerImg1}`)
                     img(src=`${answer.answerImg2}`)
                     img(src=`${answer.answerImg3}`)
+    script(src="/javascripts/votes.js")

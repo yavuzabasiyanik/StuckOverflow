@@ -99,40 +99,44 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
             questionId: question.id
         }
     });
-    let userId;
+    const voteCount = ()=>{
 
-    let votes = 0;
-    answers.forEach(async answer => {
+        let vote = 0;
+        answers.forEach(async answer => {
 
-        const id = answer.id;
-        const upvotes = await db.Upvote.findAll({
-            where: {
-                answerId:id
-            }
-        });
+            const id = answer.id;
+            const upvotes = await db.Upvote.findAll({
+                where: {
+                    answerId:id
+                }
+            });
 
-        const downvotes = await db.Downvote.findAll({
-            where: {
-                answerId: id
-            }
-        });
+            const downvotes = await db.Downvote.findAll({
+                where: {
+                    answerId: id
+                }
+            });
 
-        console.log('upvotes length:' , upvotes.length, 'answerId: ', id);
-        console.log('downvotes length:' , downvotes.length, 'answerId:', id);
-        votes += upvotes.length
-        console.log(votes);
-    })
+            console.log('upvotes length:' , upvotes.length, 'answerId: ', id);
+            console.log('downvotes length:' , downvotes.length, 'answerId:', id);
+            vote += upvotes.length
+        })
+
+        return vote;
+    }
+
 
     if (req.session.auth) {
         userId = req.session.auth.userId;
     }
+    const returnVote = voteCount()
 
     res.render('individual-question', {
         title: question.title,
         question,
         userId,
+        returnVote,
         answers,
-        votes
     });
 }));
 
@@ -147,6 +151,44 @@ router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res) => {
         question
     });
 }));
+
+//sending json
+router.get('/answer/:id(\\d+)/upVotes', csrfProtection, asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    // const question = await db.Question.findByPk(id);
+
+
+    const upVotes = await db.Upvote.findAll({
+        where:{
+            answerId:id
+        }
+    });
+
+    console.log(upVotes);
+
+    res.json({upVotes})
+
+
+}));
+
+router.get('/answer/:id(\\d+)/downVotes', csrfProtection, asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    // const question = await db.Question.findByPk(id);
+
+
+    const downVotes = await db.Downvote.findAll({
+        where:{
+            answerId:id
+        }
+    });
+
+    console.log(downVotes);
+
+    res.json({downVotes})
+
+
+}));
+
 
 router.post('/:id(\\d+)/edit', questionValidator, csrfProtection, asyncHandler(async (req, res) => {
     const id = req.params.id;
