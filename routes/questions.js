@@ -90,13 +90,15 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
     const question = await db.Question.findByPk(id, {
         include: [
             db.User,
-            {model:db.Answer,
-            include:[db.Upvote,db.Downvote]},
+            {
+                model: db.Answer,
+                include: [db.Upvote, db.Downvote]
+            },
         ]
     });
 
-    console.log("============================", question.Answers[0].Upvotes.length);
-    console.log("============================", question.Answers[0].Downvotes.length);
+    // console.log("============================", question.Answers[0].Upvotes.length);
+    // console.log("============================", question.Answers[0].Downvotes.length);
 
     const answers = await db.Answer.findAll({
         where: {
@@ -163,13 +165,13 @@ router.get('/answer/:id(\\d+)/upVotes', csrfProtection, asyncHandler(async (req,
 
 
     const upVotes = await db.Upvote.findAll({
-        where:{
-            answerId:id
+        where: {
+            answerId: id
         }
     });
 
 
-    res.json({upVotes})
+    res.json({ upVotes })
 
 
 }));
@@ -180,14 +182,14 @@ router.get('/answer/:id(\\d+)/downVotes', csrfProtection, asyncHandler(async (re
 
 
     const downVotes = await db.Downvote.findAll({
-        where:{
-            answerId:id
+        where: {
+            answerId: id
         }
     });
 
     console.log(downVotes);
 
-    res.json({downVotes})
+    res.json({ downVotes })
 
 
 }));
@@ -390,7 +392,7 @@ router.get(`/api/answers/:id(\\d+)/upVotes`, asyncHandler(async (req, res) => {
         }
     });
 
-    res.json({data:upVotes})
+    res.json({ data: upVotes })
 
 }));
 
@@ -404,7 +406,7 @@ router.get(`/api/answers/:id(\\d+)/downVotes`, asyncHandler(async (req, res) => 
         }
     });
 
-    res.json({data:downVotes})
+    res.json({ data: downVotes })
 
 }));
 //votes
