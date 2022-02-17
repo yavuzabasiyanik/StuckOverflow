@@ -16,9 +16,9 @@ block content
         div(class="question-body")
             div= question.message
             div(class='images-container')
-                //- img(src=`${question.questionImg1}`)
-                //- img(src=`${question.questionImg2}`)
-                //- img(src=`${question.questionImg3}`)
+                img(src=`${question.questionImg1}`)
+                img(src=`${question.questionImg2}`)
+                img(src=`${question.questionImg3}`)
         div
         if locals.authenticated
             if userId !== question.userId
@@ -34,10 +34,10 @@ block content
                         if locals.authenticated
                             if userId === answer.userId
                                 div(class="edit-answer orange-button")
-                                    a(href=`/answers/${answer.id}/edit`) Edit
-                                //- div(class="delete-question")
-                                //-     a(href=`/answers/${answer.id}/delete`) Delete
-                //- div(class='images-container')
-                //-     img(src=`${answer.answerImg1}`)
-                //-     img(src=`${answer.answerImg2}`)
-                //-     img(src=`${answer.answerImg3}`)
+                                    a(href=`/questions/answers/${answer.id}/edit`) Edit
+                                div(class="delete-answer orange-button")
+                                    a(href=`/questions/answers/${answer.id}/delete`) Delete
+                div(class='images-container')
+                    img(src=`${answer.answerImg1}`)
+                    img(src=`${answer.answerImg2}`)
+                    img(src=`${answer.answerImg3}`)

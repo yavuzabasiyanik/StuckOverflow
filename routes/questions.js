@@ -118,6 +118,7 @@ router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res) => {
         question
     });
 }));
+
 router.post('/:id(\\d+)/edit', questionValidator, csrfProtection, asyncHandler(async (req, res) => {
     const id = req.params.id;
     const question = await db.Question.findByPk(id);
@@ -221,8 +222,9 @@ router.post('/:id(\\d+)/answer', answerValidator, csrfProtection, asyncHandler(a
 }));
 
 //  Edit Answers
-router.get(`/answer/:id(\\d+)/edit`, csrfProtection, asyncHandler(async (req, res) => {
-    const id = parseInt(req.Answer.id);
+router.get(`/answers/:id(\\d+)/edit`, csrfProtection, asyncHandler(async (req, res) => {
+
+    const id = parseInt(req.params.id);
 
     const answer = await db.Answer.findByPk(id);
 
@@ -232,4 +234,61 @@ router.get(`/answer/:id(\\d+)/edit`, csrfProtection, asyncHandler(async (req, re
         answer,
     });
 }));
+
+
+router.post(`/answers/:id(\\d+)/edit`, answerValidator, csrfProtection, asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const answer = await db.Answer.findByPk(id);
+
+    const {
+        message,
+        answerImg1,
+        answerImg2,
+        answerImg3,
+    } = req.body;
+
+    const validationErr = validationResult(req);
+
+    if (validationErr.isEmpty()) {
+        await answer.update({
+            message,
+            answerImg1,
+            answerImg2,
+            answerImg3,
+        });
+
+        await answer.save();
+        res.redirect(`/questions/${answer.questionId}`);
+    } else {
+        const errors = validationErr.array().map(err => err.msg);
+        res.render('answers-edit', {
+            title: 'Edit Answer',
+            errors,
+            answer,
+            csrfToken: req.csrfToken()
+        });
+    }
+}));
+
+router.get(`/answers/:id(\\d+)/delete`, asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const answer = await db.Answer.findByPk(id);
+
+    res.render('answer-delete', {
+        title: 'Delete answer',
+        answer,
+    });
+}));
+
+router.post(`/answers/:id(\\d+)/delete`, asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const answer = await db.Answer.findByPk(id);
+
+    await answer.destroy();
+
+    res.redirect(`/questions/${answer.questionId}`);
+}));
+
+
+
 module.exports = router;
