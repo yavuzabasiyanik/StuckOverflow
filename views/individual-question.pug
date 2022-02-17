@@ -38,12 +38,21 @@ block content
                                     a(href=`/questions/answers/${answer.id}/edit`) Edit
                                 div(class="delete-answer orange-button")
                                     a(href=`/questions/answers/${answer.id}/delete`) Delete
-                            else
                                 div(class="votes")
-                                    //- img(src="/images/upvote_active.svg" alt="upvote" class="upvote")
-                                    a(href=`/questions/answer/${answer.id}/upVotes` class="votesClass") Upvotes
+                                    p(class="inactive__upvotes") Upvotes
                                     p(class="vote-count")=answer.Upvotes.length-answer.Downvotes.length
-                                    a(href=`/questions/answer/${answer.id}/downVotes` class="votesClass") Downvotes
+                                    p(class="inactive__downvotes") Downvotes
+                            else
+                                form(action=`/questions/answer/${answer.id}/upVotes` method="post")
+                                    button(type="submit" class="active__upvotes") Upvote
+                                p(class="vote-count")=answer.Upvotes.length-answer.Downvotes.length
+                                form(action=`/questions/answer/${answer.id}/downVotes` method="post")
+                                    button(type="submit" class="active__downvotes") Downvote
+                        else
+                            div(class="votes")
+                                p(class="inactive__upvotes") Upvotes
+                                p(class="vote-count")=answer.Upvotes.length-answer.Downvotes.length
+                                p(class="inactive__downvotes") Downvotes
                 div(class='images-container')
                     img(src=`${answer.answerImg1}`)
                     img(src=`${answer.answerImg2}`)

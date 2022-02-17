@@ -97,9 +97,6 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
         ]
     });
 
-    // console.log("============================", question.Answers[0].Upvotes.length);
-    // console.log("============================", question.Answers[0].Downvotes.length);
-
     const answers = await db.Answer.findAll({
         where: {
             questionId: question.id
@@ -409,6 +406,7 @@ router.get(`/api/answers/:id(\\d+)/downVotes`, asyncHandler(async (req, res) => 
     res.json({ data: downVotes })
 
 }));
+
 //votes
 
 
