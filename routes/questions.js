@@ -31,10 +31,10 @@ router.get('/', csrfProtection, asyncHandler(async (req, res) => {
         order: [['updatedAt', 'DESC']]
     });
     // console.log('QQQQQQQQQQQQQQQ', questions);
-    res.render('questions', { 
-        questions, 
-        title: 'questions', 
-        csrfToken: req.csrfToken() 
+    res.render('questions', {
+        questions,
+        title: 'questions',
+        csrfToken: req.csrfToken()
     });
 }));
 
@@ -88,7 +88,10 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
     const id = parseInt(req.params.id);
 
     const question = await db.Question.findByPk(id, {
-        include: [db.User, db.Answer]
+        include: [
+            db.User,
+            db.Answer,
+        ]
     });
 
     const answers = await db.Answer.findAll({
@@ -96,8 +99,29 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
             questionId: question.id
         }
     });
-    console.log(answers);
     let userId;
+
+    let votes = 0;
+    answers.forEach(async answer => {
+
+        const id = answer.id;
+        const upvotes = await db.Upvote.findAll({
+            where: {
+                answerId:id
+            }
+        });
+
+        const downvotes = await db.Downvote.findAll({
+            where: {
+                answerId: id
+            }
+        });
+
+        console.log('upvotes length:' , upvotes.length, 'answerId: ', id);
+        console.log('downvotes length:' , downvotes.length, 'answerId:', id);
+        votes += upvotes.length
+        console.log(votes);
+    })
 
     if (req.session.auth) {
         userId = req.session.auth.userId;
@@ -107,7 +131,8 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
         title: question.title,
         question,
         userId,
-        answers
+        answers,
+        votes
     });
 }));
 
@@ -292,6 +317,10 @@ router.post(`/answers/:id(\\d+)/delete`, asyncHandler(async (req, res) => {
 
     res.redirect(`/questions/${answer.questionId}`);
 }));
+
+
+//votes
+
 
 
 
