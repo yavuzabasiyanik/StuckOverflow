@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", e => {
 
 
         upButton.addEventListener('click',async(e)=>{
-            e.preventDefault()
-
+            e.preventDefault();
+    
 
             const id = e.target.id.split('-')[1];
 
@@ -21,14 +21,14 @@ document.addEventListener("DOMContentLoaded", e => {
                 const json = await res.json();
 
 
-                let totalVotes = json.upVotes- json.downVotes;
+                // let totalVotes = json.upVotes- json.downVotes;
 
-
+                console.log(json.totalVotes);
 
                 const pId = document.getElementById(`count-${id}`);
 
 
-                pId.innerHTML=totalVotes
+                pId.innerText=json.totalVotes
 
 
 
