@@ -27,7 +27,7 @@ block content
     div(class="answers-container")
         if answers
             each answer in question.Answers
-                div(class='answer-box')
+                div(class='answer-box' id=`answer-container-${answer.id}`)
                     div(class='answer-message')=answer.message
                     div(class="user__info")
                         if locals.authenticated
@@ -57,17 +57,15 @@ block content
                     //- img(src=`${answer.answerImg1}`)
                     //- img(src=`${answer.answerImg2}`)
                     //- img(src=`${answer.answerImg3}`)
-        //- else
-        //-     p No Answers Yet
-        div(class="delete-modal")
-          h1 Are you sure you want to Delete?
-          div.error-container
-            if errors
-                ul
-                    each error in errors
-                        li(class="error")= error
-          form(action=`/questions/answers/${answer.id}/delete`, method="post" class="")
-                button(type="submit" class="delete-answer-confirm") Yes
-                div(class='delete-answer-cancel')  Cancel
+                div(class="delete-modal")
+                  h1 Are you sure you want to Delete?
+                  div.error-container
+                    if errors
+                        ul
+                            each error in errors
+                                li(class="error")= error
+                  form(action=`/questions/answers/${answer.id}/delete`, method="post")
+                        button(type="submit" class="delete-answer-confirm") Yes
+                        div(class='delete-answer-cancel')  Cancel
     script(src="/javascripts/votes.js" type='module')
     script(src="/javascripts/delete-answer-modal.js")

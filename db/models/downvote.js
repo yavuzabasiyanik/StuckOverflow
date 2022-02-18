@@ -5,8 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     answerId: DataTypes.INTEGER
   }, {});
   Downvote.associate = function(models) {
-    Downvote.belongsTo(models.Answer, { foreignKey: 'answerId' })
-    Downvote.belongsTo(models.User, { foreignKey: 'userId' })
+    Downvote.belongsTo(models.Answer, { foreignKey: 'answerId', onDelete: "cascade", foreignKeyConstraint: true })
+    Downvote.belongsTo(models.User, { foreignKey: 'userId', onDelete: "cascade", foreignKeyConstraint: true })
   };
   return Downvote;
 };

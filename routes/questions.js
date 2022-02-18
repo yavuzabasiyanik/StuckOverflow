@@ -330,10 +330,11 @@ router.post(`/answers/:id(\\d+)/edit`, answerValidator, csrfProtection, asyncHan
 //     });
 // }));
 
-router.post(`/answers/:id(\\d+)/delete`, asyncHandler(async (req, res) => {
+router.delete(`/answers/:id(\\d+)/delete`, asyncHandler(async (req, res) => {
     const id = req.params.id;
     const answer = await db.Answer.findByPk(id);
 
+    console.log("avengars? avengars!", answer)
     await answer.destroy();
 
     res.json({ message: 'Answer Deleted' });
