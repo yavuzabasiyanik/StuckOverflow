@@ -453,11 +453,21 @@ router.post('/answer/:id(\\d+)/upVotes', asyncHandler(async (req, res) => {
 
     }
 
-    const upVotes = answer.Upvotes.length
-    const downVotes = answer.Downvotes.length
+    const upVotes = await db.Upvote.findAll({
+        where: {
+            answerId: id
+        }
+    });
+    const downVotes = await db.Upvote.findAll({
+        where: {
+            answerId: id
+        }
+    });
+
+    let totalVotes = upVotes - downVotes;
 
 
-    res.json({answer,upvote,downvote,upVotes,downVotes});
+    res.json({answer,upvote,downvote,upVotes,downVotes, totalVotes});
 
     // res.redirect(`/questions/${answer.questionId}`);
 
