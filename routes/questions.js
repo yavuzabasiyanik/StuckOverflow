@@ -103,32 +103,8 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
         },
         order: [['updatedAt', 'DESC']]
     });
-    // const voteCount = ()=>{
 
-    //     let vote = 0;
-    //     answers.forEach(async answer => {
-
-    //         const id = answer.id;
-    //         const upvotes = await db.Upvote.findAll({
-    //             where: {
-    //                 answerId:id
-    //             }
-    //         });
-
-    //         const downvotes = await db.Downvote.findAll({
-    //             where: {
-    //                 answerId: id
-    //             }
-    //         });
-
-    //         console.log('upvotes length:' , upvotes.length, 'answerId: ', id);
-    //         console.log('downvotes length:' , downvotes.length, 'answerId:', id);
-    //         vote += upvotes.length
-    //     })
-
-    //     return vote;
-    // }
-
+    let userId;
 
     if (req.session.auth) {
         userId = req.session.auth.userId;
@@ -344,15 +320,15 @@ router.post(`/answers/:id(\\d+)/edit`, answerValidator, csrfProtection, asyncHan
     }
 }));
 
-router.get(`/answers/:id(\\d+)/delete`, asyncHandler(async (req, res) => {
-    const id = req.params.id;
-    const answer = await db.Answer.findByPk(id);
+// router.get(`/answers/:id(\\d+)/delete`, asyncHandler(async (req, res) => {
+//     const id = req.params.id;
+//     const answer = await db.Answer.findByPk(id);
 
-    res.render('answer-delete', {
-        title: 'Delete answer',
-        answer,
-    });
-}));
+//     res.render('answer-delete', {
+//         title: 'Delete answer',
+//         answer,
+//     });
+// }));
 
 router.post(`/answers/:id(\\d+)/delete`, asyncHandler(async (req, res) => {
     const id = req.params.id;
@@ -360,50 +336,9 @@ router.post(`/answers/:id(\\d+)/delete`, asyncHandler(async (req, res) => {
 
     await answer.destroy();
 
-    res.redirect(`/questions/${answer.questionId}`);
+    res.json({ message: 'Answer Deleted' });
 }));
 
-
-// router.get(`/api/:id(\\d+)`, asyncHandler(async (req, res) => {
-//     const id = req.params.id;
-
-//     const answers = await db.Answer.findAll({
-//         where: {
-//             questionId: id
-//         }
-//     });
-
-//     console.log(answers);
-//     res.json(answers)
-
-// }));
-
-
-// router.get(`/api/answers/:id(\\d+)/upVotes`, asyncHandler(async (req, res) => {
-//     const id = req.params.id;
-
-//     const upVotes = await db.Upvote.findAll({
-//         where: {
-//             answerId: id
-//         }
-//     });
-
-//     res.json({ data: upVotes })
-
-// }));
-
-// router.get(`/api/answers/:id(\\d+)/downVotes`, asyncHandler(async (req, res) => {
-//     const id = req.params.id;
-
-//     const downVotes = await db.Downvote.findAll({
-//         where: {
-//             answerId: id
-//         }
-//     });
-
-//     res.json({ data: downVotes })
-
-// }));
 
 // votes
 
