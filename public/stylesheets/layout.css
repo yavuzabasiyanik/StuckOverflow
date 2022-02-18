@@ -28,6 +28,11 @@ a {
     color: black;
 }
 
+a:hover {
+    font-weight: bold;
+    color: rgba(255, 101, 0, 1);
+}
+
 .nav-buttons {
     display: flex;
     flex-direction: row;
