@@ -458,19 +458,15 @@ router.post('/answer/:id(\\d+)/upVotes', asyncHandler(async (req, res) => {
             answerId: id
         }
     });
-    const downVotes = await db.Upvote.findAll({
+    const downVotes = await db.Downvote.findAll({
         where: {
             answerId: id
         }
     });
 
-    let totalVotes = upVotes - downVotes;
+    let totalVotes = upVotes.length - downVotes.length;
 
-
-    res.json({answer,upvote,downvote,upVotes,downVotes, totalVotes});
-
-    // res.redirect(`/questions/${answer.questionId}`);
-
+    res.json({totalVotes});
 }));
 
 router.post('/answer/:id(\\d+)/downVotes', asyncHandler(async (req, res) => {
@@ -517,7 +513,22 @@ router.post('/answer/:id(\\d+)/downVotes', asyncHandler(async (req, res) => {
 
     }
 
-    res.redirect(`/questions/${answer.questionId}`);
+    const upVotes = await db.Upvote.findAll({
+        where: {
+            answerId: id
+        }
+    });
+    const downVotes = await db.Downvote.findAll({
+        where: {
+            answerId: id
+        }
+    });
+
+    let totalVotes = upVotes.length - downVotes.length;
+
+    res.json({totalVotes});
+
+    // res.redirect(`/questions/${answer.questionId}`);
 
 }));
 
