@@ -416,7 +416,9 @@ router.post('/answer/:id(\\d+)/upVotes', asyncHandler(async (req, res) => {
         userId = req.session.auth.userId;
     }
 
-    const answer = await db.Answer.findByPk(id);
+    const answer = await db.Answer.findByPk(id,{
+        include: [db.Upvote, db.Downvote]
+    });
 
     const upvote = await db.Upvote.findOne({
         where: {
@@ -451,7 +453,13 @@ router.post('/answer/:id(\\d+)/upVotes', asyncHandler(async (req, res) => {
 
     }
 
-    res.redirect(`/questions/${answer.questionId}`);
+    const upVotes = answer.Upvotes.length
+    const downVotes = answer.Downvotes.length
+
+
+    res.json({answer,upvote,downvote,upVotes,downVotes});
+
+    // res.redirect(`/questions/${answer.questionId}`);
 
 }));
 
