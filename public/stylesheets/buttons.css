@@ -1,0 +1,63 @@
+.orange__button {
+    background : -moz-linear-gradient(50% 100% 90deg,rgba(255, 101, 0, 1) 0%,rgba(255, 152, 0, 1) 100%);
+    background : -webkit-linear-gradient(90deg, rgba(255, 101, 0, 1) 0%, rgba(255, 152, 0, 1) 100%);
+    background : -webkit-gradient(linear,50% 100% ,50% 0% ,color-stop(0,rgba(255, 101, 0, 1) ),color-stop(1,rgba(255, 152, 0, 1) ));
+    background : -o-linear-gradient(90deg, rgba(255, 101, 0, 1) 0%, rgba(255, 152, 0, 1) 100%);
+    background : -ms-linear-gradient(90deg, rgba(255, 101, 0, 1) 0%, rgba(255, 152, 0, 1) 100%);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF6500', endColorstr='#FF9800' ,GradientType=0)";
+    background : linear-gradient(0deg, rgba(255, 101, 0, 1) 0%, rgba(255, 152, 0, 1) 100%);
+    border: 0px;
+    border-radius : 2px;
+    -moz-border-radius : 2px;
+    -webkit-border-radius : 2px;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF9800',endColorstr='#FF6500' , GradientType=0);
+    color: white;
+    font-weight: bolder;
+    margin-top: 10px;
+}
+
+.grey__button {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background : -moz-linear-gradient(50% 100% 90deg,rgba(100, 100, 100, 1) 0%,rgba(150, 150, 150, 1) 100%);
+    background : -webkit-linear-gradient(90deg, rgba(100, 100, 100, 1) 0%, rgba(150, 150, 150, 1) 100%);
+    background : -webkit-gradient(linear,50% 100% ,50% 0% ,color-stop(0,rgba(100, 100, 100, 1) ),color-stop(1,rgba(150, 150, 150, 1) ));
+    background : -o-linear-gradient(90deg, rgba(100, 100, 100, 1) 0%, rgba(150, 150, 150, 1) 100%);
+    background : -ms-linear-gradient(90deg, rgba(100, 100, 100, 1) 0%, rgba(150, 150, 150, 1) 100%);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#333333', endColorstr='#999999' ,GradientType=0)";
+    background : linear-gradient(0deg, rgba(100, 100, 100, 1) 0%, rgba(150, 150, 150, 1) 100%);
+    border: 0px;
+    border-radius : 2px;
+    -moz-border-radius : 2px;
+    -webkit-border-radius : 2px;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF9800',endColorstr='#FF6500' , GradientType=0);
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    margin-top: 10px;
+}
+
+.login__button__navbar {
+    width : 80px;
+    height : 22px;
+    margin: 0px 5px;
+    padding: 4px;
+}
+
+.login__button__main {
+    width : 238px;
+    height : 37px;
+    margin-top: 10px;
+}
+
+.demo__button__navbar {
+    display:flex;
+    justify-content: flex-end;
+}
+
+.navbar__buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0px 15px;
+}
