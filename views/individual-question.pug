@@ -27,7 +27,7 @@ block content
     div(class="answers-container")
         if answers
             each answer in question.Answers
-                div(class='answer-box')
+                div(class='answer-box' id=`answer-container-${answer.id}`)
                     div(class='answer-message')=answer.message
                     div(class="user__info")
                         if locals.authenticated
