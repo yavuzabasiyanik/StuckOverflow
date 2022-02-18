@@ -542,3 +542,8 @@ textarea {
 .downvote {
     width: 20px;
 }
+
+.vote-count {
+    font-size: 30px;
+    font-weight: bolder;
+}

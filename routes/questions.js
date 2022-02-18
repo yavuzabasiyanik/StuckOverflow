@@ -100,7 +100,8 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
     const answers = await db.Answer.findAll({
         where: {
             questionId: question.id
-        }
+        },
+        order: [['updatedAt', 'DESC']]
     });
     // const voteCount = ()=>{
 
@@ -363,51 +364,144 @@ router.post(`/answers/:id(\\d+)/delete`, asyncHandler(async (req, res) => {
 }));
 
 
-router.get(`/api/:id(\\d+)`, asyncHandler(async (req, res) => {
+// router.get(`/api/:id(\\d+)`, asyncHandler(async (req, res) => {
+//     const id = req.params.id;
+
+//     const answers = await db.Answer.findAll({
+//         where: {
+//             questionId: id
+//         }
+//     });
+
+//     console.log(answers);
+//     res.json(answers)
+
+// }));
+
+
+// router.get(`/api/answers/:id(\\d+)/upVotes`, asyncHandler(async (req, res) => {
+//     const id = req.params.id;
+
+//     const upVotes = await db.Upvote.findAll({
+//         where: {
+//             answerId: id
+//         }
+//     });
+
+//     res.json({ data: upVotes })
+
+// }));
+
+// router.get(`/api/answers/:id(\\d+)/downVotes`, asyncHandler(async (req, res) => {
+//     const id = req.params.id;
+
+//     const downVotes = await db.Downvote.findAll({
+//         where: {
+//             answerId: id
+//         }
+//     });
+
+//     res.json({ data: downVotes })
+
+// }));
+
+// votes
+
+router.post('/answer/:id(\\d+)/upVotes', asyncHandler(async (req, res) => {
     const id = req.params.id;
 
+    let userId;
 
-    const answers = await db.Answer.findAll({
+    if (req.session.auth) {
+        userId = req.session.auth.userId;
+    }
+
+    const answer = await db.Answer.findByPk(id);
+
+    const upvote = await db.Upvote.findOne({
         where: {
-            questionId: id
+            answerId: id,
+            userId
         }
     });
 
-    console.log(answers);
-    res.json(answers)
-
-}));
-
-
-router.get(`/api/answers/:id(\\d+)/upVotes`, asyncHandler(async (req, res) => {
-    const id = req.params.id;
-
-
-    const upVotes = await db.Upvote.findAll({
+    const downvote = await db.Downvote.findOne({
         where: {
-            answerId: id
+            answerId: id,
+            userId
         }
     });
 
-    res.json({ data: upVotes })
+    if (!downvote) {
+        if (upvote) {
+            await upvote.destroy();
+        } else {
+            await db.Upvote.create({
+                answerId: id,
+                userId
+            });
+        }
+    } else {
+        await downvote.destroy();
+
+        await db.Upvote.create({
+            answerId: id,
+            userId
+        });
+
+    }
+
+    res.redirect(`/questions/${answer.questionId}`);
 
 }));
 
-router.get(`/api/answers/:id(\\d+)/downVotes`, asyncHandler(async (req, res) => {
+router.post('/answer/:id(\\d+)/downVotes', asyncHandler(async (req, res) => {
     const id = req.params.id;
 
+    let userId;
 
-    const downVotes = await db.Downvote.findAll({
+    if (req.session.auth) {
+        userId = req.session.auth.userId;
+    }
+
+    const answer = await db.Answer.findByPk(id);
+
+    const upvote = await db.Upvote.findOne({
         where: {
-            answerId: id
+            answerId: id,
+            userId
         }
     });
 
-    res.json({ data: downVotes })
+    const downvote = await db.Downvote.findOne({
+        where: {
+            answerId: id,
+            userId
+        }
+    });
+
+    if (!upvote) {
+        if (downvote) {
+            await downvote.destroy();
+        } else {
+            await db.Downvote.create({
+                answerId: id,
+                userId
+            });
+        }
+    } else {
+        await upvote.destroy();
+
+        await db.Downvote.create({
+            answerId: id,
+            userId
+        });
+
+    }
+
+    res.redirect(`/questions/${answer.questionId}`);
 
 }));
-
-//votes
 
 
 
