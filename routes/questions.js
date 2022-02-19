@@ -101,7 +101,8 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
         where: {
             questionId: question.id
         },
-        order: [['updatedAt', 'DESC']]
+        order: [['updatedAt', 'DESC']],
+        include: db.User
     });
 
     let userId;
@@ -226,13 +227,33 @@ router.post(`/:id(\\d+)/delete`, asyncHandler(async (req, res) => {
 
 // Create New Answer
 router.get('/:id(\\d+)/answer', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
-    const questionId = parseInt(req.params.id);
+        const userId = req.session.auth.userId;
+        const questionId = parseInt(req.params.id);
 
-    res.render('answer-form', {
-        title: 'Answer a Question',
-        csrfToken: req.csrfToken(),
-        questionId
-    });
+        const answer = await db.Answer.findOne({
+            where: {
+                userId,
+                questionId
+            }
+        });
+
+        console.log(answer);
+        // const question = await db.Question.findByPk(questionId);
+
+        if (answer) {
+            const message = 'You have already answered this question';
+            res.render('error', {
+                message,
+                title: 'NO',
+                questionId: answer.questionId
+            });
+        } else {
+            res.render('answer-form', {
+                title: 'Answer a Question',
+                csrfToken: req.csrfToken(),
+                questionId
+            });
+        }
 }));
 
 router.post('/:id(\\d+)/answer', answerValidator, csrfProtection, asyncHandler(async (req, res) => {
