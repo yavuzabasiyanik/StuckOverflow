@@ -5,6 +5,10 @@ block content
     div(class="question-container")
         div(class="title-profile")
             h4= question.User.userName
+            if question.User.profileUrl
+                img(src=`${question.User.profileUrl}`, alt="profile picture")
+            else
+                img(src="/images/defaultprofile.png", alt="profile picture")    
             if locals.authenticated
                 if userId === question.User.id
                     div(class="edit-question")
@@ -29,15 +33,19 @@ block content
             each answer in question.Answers
                 div(class='answer-box' id=`answer-container-${answer.id}`)
                     div(class='answer-message')=answer.message
+                    div(class='answer-poster-info')
+                        if answer.User.profileUrl
+                            img(src=`${answer.User.profileUrl}` alt="profile pic")
+                        else
+                            img(src="/images/defaultprofile.png")      
+                        div(class="answer-user-name")=`posted by ${answer.User.userName} on ${answer.createdAt.toString().split(' ').slice(0,5).join(' ')}`
                     div(class="user__info")
                         if locals.authenticated
                             if userId === answer.userId
                                 div(class="answer-profile-pic")
-                                div(class="user-name")
                                 div(class="edit-answer orange-button")
                                     a(href=`/questions/answers/${answer.id}/edit`) Edit
-                                div(class="delete-answer" id=`delete-${answer.id}`)
-                                  a(href=`/questions/answers/${answer.id}/delete`) Delete
+                                div(class="delete-answer" id=`delete-${answer.id}`) Delete
                                 div(class="votes")
                                     p(class="inactive__upvotes") Upvotes
                                     p(class="counts" id=`count-${answer.id}`)=answer.Upvotes.length-answer.Downvotes.length

@@ -13,13 +13,17 @@ block content
     div(class='question-list-body')
         each question in questions
             div(class="question-container")
-                div(class= 'answer-total')= `Answers: ${question.Answers.length}`
+                h6(class= 'answer-total')= `Answers: ${question.Answers.length}`
                 div(class='question-content')
                     a(href=`/questions/${question.id}` class='question-title')= question.title
+                    h6=`posted on ${question.createdAt.toString().split(' ').slice(0,5).join(' ')}`
                     p= question.message
                 div(class='question-list-user')
-                    img(src="/images/Logo.svg", alt="profile pic")
-                    p(class="user-name")= question.User.userName
+                    if question.User.profileUrl
+                        img(src=`${question.User.profileUrl}`, alt="profile pic")
+                    else 
+                        img(src="/images/Logo.svg", alt="profile pic")    
+                    h4(class="user-name")= question.User.userName
     div(class="question-login-container")                
         div(class="question-login")
             h4 Please Log in

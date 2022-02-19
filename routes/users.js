@@ -107,5 +107,25 @@ router.post('/signup', userValidator, csrfProtection, asyncHandler(async (req, r
 
 }));
 
+router.get('/profile', asyncHandler(async(req, res) => {
+    const id = req.session.auth.userId;
+
+    const user = await db.User.findByPk(id, {
+      include: [
+        db.Question, 
+        {
+          model: db.Answer,
+          include: db.Question,
+        },
+      ],
+    });
+
+    console.log(user);
+    res.render('profile', {
+      title: 'Profile',
+      user
+    });
+}));
+
 
 module.exports = router;
