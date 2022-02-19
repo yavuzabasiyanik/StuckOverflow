@@ -2,6 +2,7 @@
 @import 'buttons.css';
 @import 'login.css';
 @import 'questions.css';
+@import 'individual-question.css';
 
 * {
     margin: 0;
