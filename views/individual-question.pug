@@ -19,9 +19,9 @@ block content
                 div(class='question__message')
                     p=question.message
                 div(class='images__container')
-                    //- img(src=`${question.questionImg1}`)
-                    //- img(src=`${question.questionImg2}`)
-                    //- img(src=`${question.questionImg3}`)
+                    img(src=`${question.questionImg1}`)
+                    img(src=`${question.questionImg2}`)
+                    img(src=`${question.questionImg3}`)
             div
             if locals.authenticated
                 if userId !== question.userId
@@ -36,8 +36,8 @@ block content
                             if answer.User.profileUrl
                                 img(src=answer.User.profileUrl, alt="profile picture")
                             else
-                                img(src="/images/Logo.svg", alt="default pic")    
-                            h4=answer.User.userName    
+                                img(src="/images/Logo.svg", alt="default pic")
+                            h4=answer.User.userName
                             if locals.authenticated
                                 if userId === answer.userId
                                     div(class="answer-profile-pic")
@@ -67,9 +67,9 @@ block content
                         div(class='answer__message')
                             p=answer.message
                     div(class='images-container')
-                        //- img(src=`${answer.answerImg1}`)
-                        //- img(src=`${answer.answerImg2}`)
-                        //- img(src=`${answer.answerImg3}`)
+                        img(src=`${answer.answerImg1}`)
+                        img(src=`${answer.answerImg2}`)
+                        img(src=`${answer.answerImg3}`)
                     div(class="delete__modal")
                         h1 Are you sure you want to Delete?
                             div.error-container
