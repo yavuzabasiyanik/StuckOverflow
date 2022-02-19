@@ -11,8 +11,10 @@ block content
                         img(src=question.User.profileUrl, alt="profile-img")
                     else
                         img(src='/images/defaultprofile.png')
-                    h6= question.User.userName
-                    h6= `Joined on ${question.User.createdAt.toString().split(' ').slice(0,4).join(' ')}`
+                    div(class='question-user-info')
+                        h6= question.User.userName
+                        h6= `Joined on`
+                        h6= question.User.createdAt.toString().split(' ').slice(0,4).join(' ')
                     if locals.authenticated
                         if userId === question.User.id
                             div(class="buttons__individual__question")
@@ -34,8 +36,8 @@ block content
             //- div(class="Q_A__image_BG")
             div(class="answers__container")
                 if answers
-                    div(class='num-answers')
-                        h2= `${answers.length} Answers`
+                    h1(class='num-answers')=`${answers.length}`
+                        //- h2= `${answers.length}
                     each answer in question.Answers
                         div(class='answer__box' id=`answer-container-${answer.id}`)
                             div(class="user__info")
@@ -44,7 +46,8 @@ block content
                                 else
                                     img(src="/images/Logo.svg", alt="default pic")
                                 h6=answer.User.userName
-                                h6=`Joined on ${answer.User.createdAt.toString().split(' ').slice(0,4).join(' ')}`
+                                h6=`Joined on`
+                                h6= answer.User.createdAt.toString().split(' ').slice(0,4).join(' ')
                                 if locals.authenticated
                                     if userId === answer.userId
                                         div(class="answer-profile-pic")

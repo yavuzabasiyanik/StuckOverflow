@@ -10,13 +10,18 @@
 
 .buttons__individual__question {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 12px;
     margin: 0px 10px;
+    padding:10px;
 }
 
+.buttons__individual__question a {
+    height:10px;
+    margin: 1px;
+}
 /*  ORANGE BUTTON AND HOVER  */
 .orange__button {
     background : linear-gradient(0deg, rgba(255, 100, 0, 1) 0%, rgba(255, 150, 0, 1) 100%);

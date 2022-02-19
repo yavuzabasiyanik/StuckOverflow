@@ -19,7 +19,11 @@
 }
 
 .title-profile {
-    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    /* padding: 1px; */
     font-size: 14px;
 }
 
@@ -27,6 +31,13 @@
     width: 40px;
 }
 
+.question-user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    /* padding: 5px; */
+}
 .question__title {
     font-weight: bolder;
     /* font-size: 16px; */
@@ -116,12 +127,16 @@
 
 .num-answers {
     display: flex;
-    justify-content: center;
-    padding: 10px;
+    justify-content: flex-end;
+    align-items: flex-start;
+    font-weight: bolder;
+    color:gray;
+    padding: 5px;
     border: 0.5px solid darkgray;
-    background : linear-gradient(0deg, rgba(255, 150, 0, 1) 0%, rgba(255, 100, 0, 1) 100%);
-    color:white;
-
+    background-image: url('/images/StuckOverflow_Answers_BG.svg');
+    background-repeat: no-repeat;
+    width: 100%;
+    box-sizing: border-box;
 }
 .answers__container {
     display: flex;
