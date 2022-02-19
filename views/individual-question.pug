@@ -1,7 +1,7 @@
 extends layout.pug
 
 block content
-    h1(class="Q_A__title") QUESTION
+    include nav-bar.pug
     div(class="question-container")
         div(class="title-profile")
             h4= question.User.userName
