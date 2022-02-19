@@ -1,0 +1,25 @@
+nav(class='navbar')
+    div(class="profile__questions")
+        img(src="/images/Logo.svg" alt="logo" class="navbar__logo")
+        if locals.authenticated
+            a(class='profile' href='/users/profile') Profile
+            a(class='questions' href='/questions') Questions
+        else
+            a(class='questions' href='/questions') Questions
+    div(class="search__bar")
+        input(type="text" name="search" placeholder="Search")
+    if locals.authenticated
+        div(class="buttons__navbar")
+            div
+                a(class='logout__button__navbar grey__button' href='/logout') Logout
+    else
+        div(class="buttons__navbar")
+            div(class="demo__button")
+                form(action="/", method="post" )
+                    input(type="hidden" name="_csrf" value=csrfToken)
+                    input(type="hidden" name="userName" value="sifuhotman")
+                    input(type="hidden" name="password" value="password")
+                    button(type="submit" class="demo__button__navbar") Demo
+            div
+                a(class='login__button__navbar orange__button' href='/') Login
+                a(class='signup__button__navbar grey__button' href='/users/signup') Sign up

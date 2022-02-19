@@ -1,0 +1,111 @@
+.question__background img {
+    display: block;
+    width: 75%;
+}
+
+.question__background {
+    display: block;
+    align-items: center;
+}
+
+.ask-button {
+    position: fixed;
+    top: 7%;
+    right: 1%
+}
+
+.question__message {
+    font-weight: normal;
+    font-size: 10px;
+    padding: 10px 0px;
+}
+
+.question__list__body {
+    display:grid;
+    width: 60%;
+    margin: 0 auto;
+    background-color: white;
+}
+
+.question__container {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 20% 60% 20%;
+    border: 1px solid black;
+    height: 100px;
+    overflow: hidden;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.question__list__user {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.question__list__user img {
+    height: 25px;
+}
+
+.question__user__name {
+    /* display: flex;
+    justify-content: flex-start; */
+    font-size: 10px;
+}
+
+.question__login {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20% auto;
+
+    border-color : 1px rgb(50, 50, 50) solid;
+    background : rgba(255, 255, 255, 0.8);
+    width : 290px;
+    height : 300px;
+    border-radius : 13px;
+
+    position: absolute;
+    top: 10%;
+    left: 33%;
+    right: 33%;
+}
+
+.login__cancel__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    width : 240px;
+    height : 25px;
+}
+
+.login__cancel__button:hover {
+    cursor: pointer;
+}
+
+.Q_A__forms {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 25% auto;
+    padding: 0px 60px;
+    position: relative;
+    background : rgba(255, 255, 255, 0.5);
+    border-style : Solid;
+    border-color : rgba(0, 0, 0, 1);
+    border-width : 1px;
+    width : 640px;
+    height : 513px;
+    border-radius : 13px;
+}
+
+textarea {
+    width: 640px;
+    height: 200px;
+}
