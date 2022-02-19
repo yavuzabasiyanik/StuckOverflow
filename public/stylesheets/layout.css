@@ -3,6 +3,7 @@
 @import 'login.css';
 @import 'questions.css';
 @import 'individual-question.css';
+@import 'forms.css';
 
 * {
     margin: 0;

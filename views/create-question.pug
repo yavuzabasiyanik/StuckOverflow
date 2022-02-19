@@ -1,20 +1,23 @@
 extends layout.pug
 
 block content
-
-    form(action="/questions/ask" method="post" class="q-a-forms")
-        input(type="hidden" name="_csrf" value=csrfToken)
-        label(for="title") Question Title
-        input(type="text" name="title" placeholder=title required)
-        label(for="message") Question:
-        textarea(name="message" value=message required)
-        label(for="questionImg1") img url:
-        input(type="text" name="questionImg1" value=questionImg1)
-        label(for="questionImg2") img url:
-        input(type="text" name="questionImg2" value=questionImg2)
-        label(for="questionImg3") img url:
-        input(type="text" name="questionImg3" value=questionImg3)
-
-        button(type="submit" class="orange-button") Ask Question
-        div(class="cancel-edit")
-            a(href=`/questions`) Cancel
+    include nav-bar.pug
+    body
+        div('create-question')
+        div(class='form-container')
+            img(src="/images/StuckOverflow_Questions2_BG.svg", alt="img")
+            form(action="/questions/ask" method="post" class="q-a-forms")
+                input(type="hidden" name="_csrf" value=csrfToken)
+                label(for="title") Question Title
+                input(type="text" name="title" placeholder=title required)
+                label(for="message") Question:
+                textarea(name="message" value=message required)
+                label(for="questionImg1") img url:
+                input(type="text" name="questionImg1" value=questionImg1)
+                label(for="questionImg2") img url:
+                input(type="text" name="questionImg2" value=questionImg2)
+                label(for="questionImg3") img url:
+                input(type="text" name="questionImg3" value=questionImg3 class='create-message')
+                button(type="submit" class="orange-button") Ask Question
+                div(class="cancel-edit")
+                    a(href=`/questions`) Cancel

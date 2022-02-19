@@ -1,11 +1,12 @@
 extends layout.pug
 
 block content
+    include nav-bar.pug
     h1=`${user.userName}'s Profile`
     if user.profileUrl
         img(src=`${user.profileUrl}`, alt="profile pic")
     else
-        img(src="/images/defaultprofile.png", alt="alec")        
+        img(src="/images/defaultprofile.png", alt="alec")
     div(class='user-info')
         h2=`First Name: ${user.firstName}`
         h2=`Last Name: ${user.lastName}`
@@ -15,12 +16,10 @@ block content
             h3 My Questions
                 each question in user.Questions
                     li
-                        a(href=`/questions/${question.id}`)=question.title 
+                        a(href=`/questions/${question.id}`)=question.title
     div(class='users-answers')
         if user.Answers
             h3 My Answers
                 each answer in user.Answers
-                    li 
+                    li
                         a(href=`/questions/${answer.Question.id}`)=answer.Question.title
-
-

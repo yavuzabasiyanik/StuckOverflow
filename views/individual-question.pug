@@ -3,82 +3,93 @@ extends layout.pug
 block content
     body
         include nav-bar.pug
-        div(class="question__two__background")
-        div(class="individual__question__container")
-            div(class="title-profile")
-                h4= question.User.userName
-                if question.User.profileUrl
-                    img(src=question.User.profileUrl, alt="")
-                if locals.authenticated
-                    if userId === question.User.id
-                        div(class="buttons__individual__question")
-                            a(class="edit__delete__buttons grey__button" href=`/questions/${question.id}/edit`) Edit
-                            a(class="edit__delete__buttons orange__button" href=`/questions/${question.id}/delete`) Delete
-            div(class="question__body")
-                h2(class="question__title")=question.title
-                div(class='question__message')
-                    p=question.message
-                div(class='images__container')
-                    //- img(src=`${question.questionImg1}`)
-                    //- img(src=`${question.questionImg2}`)
-                    //- img(src=`${question.questionImg3}`)
-            div
-            if locals.authenticated
-                if userId !== question.userId
-                    div(class="answer-a-question orange-button")
-                        a(href=`/questions/${question.id}/answer`) Answer a Question
-        div(class="Q_A__image_BG")
-        div(class="answers__container")
-            if answers
-                each answer in question.Answers
-                    div(class='answer-box' id=`answer-container-${answer.id}`)
-                        div(class="user__info")
-                            if answer.User.profileUrl
-                                img(src=answer.User.profileUrl, alt="profile picture")
-                            else
-                                img(src="/images/Logo.svg", alt="default pic")    
-                            h4=answer.User.userName    
-                            if locals.authenticated
-                                if userId === answer.userId
-                                    div(class="answer-profile-pic")
-                                    div(class="user__name")
-                                    div(class="edit__answer orange-button")
-                                        a(href=`/questions/answers/${answer.id}/edit`) Edit
-                                    div(class="delete__answer" id=`delete-${answer.id}`) Delete
-                                    div(class="votes")
-                                        p(class="inactive__upvotes") Upvote
-                                        p(class="counts" id=`count-${answer.id}`)=answer.Upvotes.length-answer.Downvotes.length
-                                        p(class="inactive__downvotes") Downvote
+        img(src="/images/StuckOverflow_Questions2_BG.svg", alt="bg")
+        div(class='question__answer__list__container')
+            div(class="individual__question__container")
+                div(class="title-profile")
+                    if question.User.profileUrl
+                        img(src=question.User.profileUrl, alt="profile-img")
+                    else
+                        img(src='/images/defaultprofile.png')
+                    div(class='question-user-info')
+                        h6= question.User.userName
+                        h6= `Joined on`
+                        h6= question.User.createdAt.toString().split(' ').slice(0,4).join(' ')
+                    if locals.authenticated
+                        if userId === question.User.id
+                            div(class="buttons__individual__question")
+                                a(class="edit__delete__buttons grey__button" href=`/questions/${question.id}/edit`) Edit
+                                a(class="edit__delete__buttons orange__button" href=`/questions/${question.id}/delete`) Delete
+                div(class="question__body")
+                    h2(class="question__title")=`${question.title}`
+                    div
+                        if locals.authenticated
+                            if userId !== question.userId
+                                div(class="answer-a-question orange-button")
+                                    a(href=`/questions/${question.id}/answer`) Answer Question
+                    div(class='question__message')
+                        p=question.message
+                    div(class='images__container')
+                        img(src=`${question.questionImg1}`)
+                        img(src=`${question.questionImg2}`)
+                        img(src=`${question.questionImg3}`)
+            //- div(class="Q_A__image_BG")
+            div(class="answers__container")
+                if answers
+                    h1(class='num-answers')=`${answers.length}`
+                        //- h2= `${answers.length}
+                    each answer in question.Answers
+                        div(class='answer__box' id=`answer-container-${answer.id}`)
+                            div(class="user__info")
+                                if answer.User.profileUrl
+                                    img(src=answer.User.profileUrl, alt="profile picture")
                                 else
-                                    div
-                                        div
-                                            form(action=`/questions/answer/${answer.id}/upVotes` method="post")
-                                                button(type="submit" class="active__upvotes" id=`up-${answer.id}`) Upvote
-                                        div
+                                    img(src="/images/Logo.svg", alt="default pic")
+                                h6=answer.User.userName
+                                h6=`Joined on`
+                                h6= answer.User.createdAt.toString().split(' ').slice(0,4).join(' ')
+                                if locals.authenticated
+                                    if userId === answer.userId
+                                        div(class="answer-profile-pic")
+                                        div(class="user__name")
+                                        div(class="votes")
+                                            img(src="/images/upvote_inactive.svg" class="inactive__upvotes")
                                             p(class="counts" id=`count-${answer.id}`)=answer.Upvotes.length-answer.Downvotes.length
+                                            img(src="/images/downvote_inactive.svg" class="inactive__downvotes")
+                                        div(class="edit__answer orange-button")
+                                            a(href=`/questions/answers/${answer.id}/edit`) Edit
+                                        div(class="delete__answer" id=`delete-${answer.id}`) Delete
+                                    else
                                         div
-                                            form(action=`/questions/answer/${answer.id}/downVotes` method="post")
-                                                button(type="submit" class="active__downvotes" id=`down-${answer.id}`) Downvote
-                            else
-                                div(class="votes")
-                                    p(class="inactive__upvotes") Upvote
-                                    p(class="counts" id=`count-${answer.id}`)=answer.Upvotes.length-answer.Downvotes.length
-                                    p(class="inactive__downvotes") Downvote
-                        div(class='answer__message')
-                            p=answer.message
-                    div(class='images-container')
-                        //- img(src=`${answer.answerImg1}`)
-                        //- img(src=`${answer.answerImg2}`)
-                        //- img(src=`${answer.answerImg3}`)
-                    div(class="delete__modal")
-                        h1 Are you sure you want to Delete?
-                            div.error-container
-                                if errors
-                                    ul
-                                        each error in errors
-                                            li(class="error")= error
-                            form(action=`/questions/answers/${answer.id}/delete`, method="post")
-                                    button(type="submit" class="delete__answer__confirm") Yes
-                                    div(class='delete__answer__cancel')  Cancel
+                                            div
+                                                form(action=`/questions/answer/${answer.id}/upVotes` method="post")
+                                                    button(type="submit" class="active__upvotes" id=`up-${answer.id}`)=`🔺`
+                                            div
+                                                p(class="counts" id=`count-${answer.id}`)=answer.Upvotes.length-answer.Downvotes.length
+                                            div
+                                                form(action=`/questions/answer/${answer.id}/downVotes` method="post")
+                                                    button(type="submit" class="active__downvotes" id=`down-${answer.id}`)=`🔻`
+                                else
+                                    div(class="votes")
+                                        h6(class="inactive__upvotes") Answer Rating:
+                                        h6(class="counts" id=`count-${answer.id}`)=answer.Upvotes.length-answer.Downvotes.length
+                                        //- p(class="inactive__downvotes")=`🔻`
+                            div(class='answer__message')
+                                //- h2 Answer:
+                                p=answer.message
+                                div(class="images__container")
+                                    img(src=`${answer.answerImg1}`)
+                                    img(src=`${answer.answerImg2}`)
+                                    img(src=`${answer.answerImg3}`)
+                        div(class="delete__modal")
+                            h1 Are you sure you want to Delete?
+                                div.error-container
+                                    if errors
+                                        ul
+                                            each error in errors
+                                                li(class="error")= error
+                                form(action=`/questions/answers/${answer.id}/delete`, method="post")
+                                        button(type="submit" class="delete__answer__confirm") Yes
+                                        div(class='delete__answer__cancel')  Cancel
     script(src="/javascripts/votes.js" type='module')
     script(src="/javascripts/delete-answer-modal.js" type='module')

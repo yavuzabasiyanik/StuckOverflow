@@ -84,7 +84,7 @@ router.post('/ask', questionValidator, csrfProtection, asyncHandler(async (req, 
 }));
 
 //individual questions
-router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
+router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
     const id = parseInt(req.params.id);
 
     const question = await db.Question.findByPk(id, {
@@ -110,13 +110,12 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
     if (req.session.auth) {
         userId = req.session.auth.userId;
     }
-    // const returnVote = voteCount()
 
     res.render('individual-question', {
         title: question.title,
         question,
         userId,
-        // returnVote,
+        csrfToken: req.csrfToken(),
         answers,
     });
 }));

@@ -17,19 +17,22 @@ block content
             div(class='question__list__body')
                 each question in questions
                     div(class="question__container")
-                        div(class= 'answer__total')= `Answers: ${question.Answers.length}`
+                        div(class= 'answer__total')
+                            h6=`Question #${question.id}`
+                            h6= `${question.Answers.length} answers`
                         div(class='question__content')
                             a(href=`/questions/${question.id}`)= question.title
+                            h6=`posted on ${question.createdAt.toString().split(' ').slice(0,5).join(' ')}`
                             div(class='question__message')
                                 p= question.message
-                                h6=`posted on ${question.createdAt.toString().split(' ').slice(0,5).join(' ')}`
                         div(class='question__list__user')
                             div(class="question__user__name")
                                 if question.User.profileUrl
                                     img(src=question.User.profileUrl, alt="profile picture")
                                 else
-                                    img(src="/images/Logo.svg", alt="profile pic")  
+                                    img(src="/images/Logo.svg", alt="profile pic")
                                 h4= question.User.userName
+                                h4= `joined on ${question.User.createdAt.toString().split(' ').slice(1,4)}`
             div(class="question__login__container")
                 div(class="question__login")
                     h1 Please Log in
@@ -46,4 +49,3 @@ block content
                             input(type="password" name="password")
                             button(type="submit" class="login__button__main orange__button") Login
                             div(class="login__cancel__button grey__button") Cancel
-        
