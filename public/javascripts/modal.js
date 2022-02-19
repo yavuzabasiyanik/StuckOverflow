@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", e => {
-    const btn = document.querySelector('.ask__question__button');
+    const btn = document.querySelector('.ask__public');
     const modal = document.querySelector('.question__login');
     const cancel = document.querySelector('.login__cancel__button');
     const body = document.querySelector('.question__list__body');

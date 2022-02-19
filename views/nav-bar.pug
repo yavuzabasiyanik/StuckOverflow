@@ -2,7 +2,7 @@ nav(class='navbar')
     div(class="profile__questions")
         img(src="/images/Logo.svg" alt="logo" class="navbar__logo")
         if locals.authenticated
-            a(class='profile' href='/profile') Profile
+            a(class='profile' href='/users/profile') Profile
             a(class='questions' href='/questions') Questions
         else
             a(class='questions' href='/questions') Questions

@@ -6,13 +6,14 @@ block content
         div
             div(class="question__background")
                 img(src="/images/StuckOverflow_Questions_BG.svg", alt="Question Image 1")
-                if locals.authenticated
-                    div
-                        form(action="/questions/ask" method="get")
-                            button(type="submit" class="ask__question__button orange__button") Ask a Question
-                else
-                    div(role='button')
-                        div(class='ask__public ask__question__button orange__button') Ask a Question
+                div(class='ask-button')
+                    if locals.authenticated
+                        div
+                            form(action="/questions/ask" method="get")
+                                button(type="submit" class="ask__question__button orange__button") Ask a Question
+                    else
+                            script(src="/javascripts/modal.js")
+                            button(class='ask__question__button orange__button ask__public') Ask a Question
             div(class='question__list__body')
                 each question in questions
                     div(class="question__container")
@@ -21,10 +22,14 @@ block content
                             a(href=`/questions/${question.id}`)= question.title
                             div(class='question__message')
                                 p= question.message
+                                h6=`posted on ${question.createdAt.toString().split(' ').slice(0,5).join(' ')}`
                         div(class='question__list__user')
-                            img(src="/images/Logo.svg", alt="profile pic")
                             div(class="question__user__name")
-                                p= question.User.userName
+                                if question.User.profileUrl
+                                    img(src=question.User.profileUrl, alt="profile picture")
+                                else
+                                    img(src="/images/Logo.svg", alt="profile pic")  
+                                h4= question.User.userName
             div(class="question__login__container")
                 div(class="question__login")
                     h1 Please Log in
@@ -41,4 +46,4 @@ block content
                             input(type="password" name="password")
                             button(type="submit" class="login__button__main orange__button") Login
                             div(class="login__cancel__button grey__button") Cancel
-        script(src="/javascripts/modal.js")
+        

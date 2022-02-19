@@ -7,6 +7,7 @@
     margin: 0px 10px;
 }
 
+
 .buttons__individual__question {
     display: flex;
     flex-direction: row;
@@ -99,6 +100,12 @@
     height : 25px;
     margin: 0px 5px;
     padding: 4px;
+}
+
+.ask__public {
+    width: 150px;
+    height: 25px;
+    border: 0px;
 }
 
 /*  SIGNUP BUTTON  */

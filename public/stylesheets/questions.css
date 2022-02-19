@@ -3,6 +3,17 @@
     width: 75%;
 }
 
+.question__background {
+    display: block;
+    align-items: center;
+}
+
+.ask-button {
+    position: fixed;
+    top: 7%;
+    right: 1%
+}
+
 .question__message {
     font-weight: normal;
     font-size: 10px;

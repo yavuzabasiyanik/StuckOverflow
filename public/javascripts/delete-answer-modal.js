@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", e => {
   const cancel = document.querySelector('.delete__answer__cancel');
   const body = document.querySelector('.individual__question__container');
 
+  console.log(btn);
   const id = btn.id.split('-')[1];
   const deleteIt = document.querySelector('.delete__answer__confirm');
 

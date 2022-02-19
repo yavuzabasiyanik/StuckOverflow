@@ -92,7 +92,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
             db.User,
             {
                 model: db.Answer,
-                include: [db.Upvote, db.Downvote]
+                include: [db.Upvote, db.Downvote, db.User]
             },
         ]
     });

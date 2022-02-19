@@ -56,26 +56,55 @@
     background-color: white;
 } */
 
-/* .answer__message {
+.answer__message {
     font-weight: normal;
     font-size: 14px;
     padding: 10px 0px;
-} */
-
-.answers__container {
-    display: grid;
-    justify-content: center;
-    /* grid-template-columns: 20% 60% 20%; */
-    /* border: 1px solid black; */
-    /* height: auto; */
-    /* overflow: hidden; */
-    /* padding: 10px; */
-    /* box-sizing: border-box; */
+    width:60%;
+    background-color: white;
 }
 
+
+
+.answers__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.answer-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: white;
+    border-bottom: 1px solid black;
+}
+
+.user__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+}
+.answer__poster {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: auto;
+}
+
+.user__info img {
+    width: 128px;
+}
 .delete__answer {
     display: flex;
     justify-content: center;
+    background-color: red;
+    color: white;
+    border: 1px solid white;
 }
 
 /* .cancel__edit {
