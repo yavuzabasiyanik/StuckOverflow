@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", e => {
   const btn = document.querySelector('.delete__answer');
   const modal = document.querySelector('.delete__modal');
   const cancel = document.querySelector('.delete__answer__cancel');
-  const body = document.querySelector('.question__container');
+  const body = document.querySelector('.individual__question__container');
 
   const id = btn.id.split('-')[1];
   const deleteIt = document.querySelector('.delete__answer__confirm');

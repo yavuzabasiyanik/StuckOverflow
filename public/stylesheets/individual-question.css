@@ -1,48 +1,13 @@
-.question__two__background {
+/* .question__two__background {
     background-image: url('/images/StuckOverflow_Questions2_BG.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-position-y: 0px;
-    background-position-x: -20px;
+    background-position-x: 200px;
     position: fixed;
     width: 75%;
     height: 185px;
-}
-
-.question__list__body {
-    display:grid;
-    width: 60%;
-    margin: 0 auto;
-    background-color: white;
-}
-
-.answer__background {
-    background-image: url('/images/StuckOverflow_Answer_BG.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-position-y: 0px;
-    background-position-x: -20px;
-    position: fixed;
-    width: 75%;
-    height: 185px;
-}
-
-.answer__list__body {
-    display:grid;
-    width: 60%;
-    margin: 0 auto;
-    background-color: white;
-}
-
-.individual__question__container {
-    display: grid;
-    justify-content: center;
-    grid-template-columns: 20% 60% 20%;
-    border: 1px solid black;
-    height: auto;
-    padding: 10px;
-    box-sizing: border-box;
-}
+} */
 
 .question__title {
     font-weight: bolder;
@@ -55,50 +20,69 @@
     padding: 10px 0px;
 }
 
-.answer__message {
-    font-weight: normal;
-    font-size: 14px;
-    padding: 10px 0px;
+.question__list__body {
+    display:grid;
+    width: 60%;
+    margin: 0 auto;
+    background-color: white;
 }
 
-.question__container {
+.individual__question__container {
     display: grid;
     justify-content: center;
     grid-template-columns: 20% 60% 20%;
+    background-color: white;
     border: 1px solid black;
     height: auto;
-    overflow: hidden;
     padding: 10px;
     box-sizing: border-box;
-
-    border: 5px red solid;
 }
+
+.answer__background {
+    background-image: url('/images/StuckOverflow_Answer_BG.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: 0px;
+    background-position-x: 0px;
+    position: fixed;
+    width: 75%;
+    height: 185px;
+}
+
+/* .answer__list__body {
+    display:grid;
+    width: 60%;
+    margin: 0 auto;
+    background-color: white;
+} */
+
+/* .answer__message {
+    font-weight: normal;
+    font-size: 14px;
+    padding: 10px 0px;
+} */
 
 .answers__container {
     display: grid;
     justify-content: center;
-    grid-template-columns: 20% 60% 20%;
-    border: 1px solid black;
-    height: auto;
-    overflow: hidden;
-    padding: 10px;
-    box-sizing: border-box;
-
-    border: 5px red solid;
+    /* grid-template-columns: 20% 60% 20%; */
+    /* border: 1px solid black; */
+    /* height: auto; */
+    /* overflow: hidden; */
+    /* padding: 10px; */
+    /* box-sizing: border-box; */
 }
 
 .delete__answer {
     display: flex;
     justify-content: center;
-    border: 1px solid black;
-    background-color: orange;
 }
 
-.cancel__edit {
+/* .cancel__edit {
   width : 238px;
   height : 37px;
   border-radius : 2px;
-}
+} */
 
 .inactive__upvotes {
     border: 0px;

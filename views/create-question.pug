@@ -5,7 +5,7 @@ block content
     form(action="/questions/ask" method="post" class="q-a-forms")
         input(type="hidden" name="_csrf" value=csrfToken)
         label(for="title") Question Title
-        input(type="text" name="title" value=title required)
+        input(type="text" name="title" placeholder=title required)
         label(for="message") Question:
         textarea(name="message" value=message required)
         label(for="questionImg1") img url:
@@ -18,4 +18,3 @@ block content
         button(type="submit" class="orange-button") Ask Question
         div(class="cancel-edit")
             a(href=`/questions`) Cancel
-

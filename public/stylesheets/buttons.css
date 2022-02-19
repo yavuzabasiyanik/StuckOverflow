@@ -7,6 +7,15 @@
     margin: 0px 10px;
 }
 
+.buttons__individual__question {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    margin: 0px 10px;
+}
+
 /*  ORANGE BUTTON AND HOVER  */
 .orange__button {
     background : linear-gradient(0deg, rgba(255, 100, 0, 1) 0%, rgba(255, 150, 0, 1) 100%);
@@ -25,7 +34,7 @@
 
 /*  GREY BUTTON AND HOVER  */
 .grey__button {
-    background: linear-gradient(0deg, rgba(100, 100, 100, 1) 0%, rgba(150, 150, 150, 1) 100%);
+    background: linear-gradient(0deg, rgba(150, 150, 150, 1) 0%, rgba(200, 200, 200, 1) 100%);
     border: 0px;
     border-radius : 2px;
     color: rgb(0, 0, 0);
@@ -73,12 +82,17 @@
 }
 
 .login__button__main {
-    width : 238px;
+    font-size: 12px;
+    font-weight: bold;
+    width : 240px;
     height : 35px;
 }
 
 /*  ASK BUTTON */
 .ask__question__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 0px;
     border-radius : 2px;
     width : 150px;
@@ -103,6 +117,18 @@
     border-radius : 2px;
     width : 65px;
     height : 25px;
+    margin: 0px 5px;
+    padding: 4px 10px;
+}
+
+/*  EDIT / DELETE BUTTON  */
+.edit__delete__buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius : 2px;
+    width : 55px;
+    height : 20px;
     margin: 0px 5px;
     padding: 4px 10px;
 }

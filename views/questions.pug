@@ -4,40 +4,41 @@ block content
     body
         include nav-bar.pug
         div
-        div(class="question__background")
-            if locals.authenticated
-                div
-                    form(action="/questions/ask" method="get")
-                        button(type="submit" class="ask__question__button orange__button") Ask a Question
-            else
-                div(role='button')
-                    div(class='ask__public ask__question__button orange__button') Ask a Question
-        div(class='question__list__body')
-            each question in questions
-                div(class="question__container")
-                    div(class= 'answer__total')= `Answers: ${question.Answers.length}`
-                    div(class='question__content')
-                        a(href=`/questions/${question.id}`)= question.title
-                        div(class='question__message')
-                            p= question.message
-                    div(class='question__list__user')
-                        img(src="/images/Logo.svg", alt="profile pic")
-                        div(class="question__user__name")
-                            p= question.User.userName
-        div(class="question__login__container")
-            div(class="question__login")
-                h4 Please Log in
-                div.error-container
-                if errors
-                    ul
-                        each error in errors
-                            li(class="error")= error
-                form(action="/", method="post" class="login-form-fields")
-                input(type="hidden" name="_csrf" value=csrfToken)
-                label(for="userName") Username
-                input(type="text" name="userName" value=userName)
-                label(for="password") Password
-                input(type="password" name="password")
-                button(type="submit" class="login__button__main orange__button") Login
-                div(class="close grey__button") Cancel
+            div(class="question__background")
+                img(src="/images/StuckOverflow_Questions_BG.svg", alt="Question Image 1")
+                if locals.authenticated
+                    div
+                        form(action="/questions/ask" method="get")
+                            button(type="submit" class="ask__question__button orange__button") Ask a Question
+                else
+                    div(role='button')
+                        div(class='ask__public ask__question__button orange__button') Ask a Question
+            div(class='question__list__body')
+                each question in questions
+                    div(class="question__container")
+                        div(class= 'answer__total')= `Answers: ${question.Answers.length}`
+                        div(class='question__content')
+                            a(href=`/questions/${question.id}`)= question.title
+                            div(class='question__message')
+                                p= question.message
+                        div(class='question__list__user')
+                            img(src="/images/Logo.svg", alt="profile pic")
+                            div(class="question__user__name")
+                                p= question.User.userName
+            div(class="question__login__container")
+                div(class="question__login")
+                    h1 Please Log in
+                    div(class="error__container")
+                        if errors
+                            ul
+                                each error in errors
+                                    li(class="error")= error
+                        form(action="/", method="post" class="login__form__fields")
+                            input(type="hidden" name="_csrf" value=csrfToken)
+                            label(for="userName") Username
+                            input(type="text" name="userName" value=userName)
+                            label(for="password") Password
+                            input(type="password" name="password")
+                            button(type="submit" class="login__button__main orange__button") Login
+                            div(class="login__cancel__button grey__button") Cancel
         script(src="/javascripts/modal.js")

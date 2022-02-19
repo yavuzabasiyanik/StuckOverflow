@@ -5,7 +5,7 @@ block content
     include nav-bar.pug
     div(class="login__form")
       h1= title
-      div.error-container
+      div(class="error__container")
         if errors
           ul
             each error in errors
