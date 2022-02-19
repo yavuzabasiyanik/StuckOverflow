@@ -1,5 +1,3 @@
-@import 'layout.css';
-
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -7,7 +5,31 @@
     background : #E5E5E5;
     height: 35px;
     width: 100%;
-    position:sticky;
-    top:0;
+    position: sticky;
+    top: 0;
+}
 
+.navbar__logo {
+    height: 30px;
+    width: 30px;
+    margin-left: 10px
+}
+
+.profile__questions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile__questions img {
+    padding-right: 5px;
+}
+
+.profile {
+    margin: 0px 15px;
+}
+
+.search__bar{
+    border: 1px;
+    background-color: red;
 }
