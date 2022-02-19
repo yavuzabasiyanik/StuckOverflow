@@ -10,15 +10,16 @@ block content
                     form(action="/questions/ask" method="get")
                         button(type="submit" class="ask__question__button orange__button") Ask a Question
             else
-                div(class='ask__question__button orange__button' role='button')
+                div(role='button')
                     div(class='ask__public ask__question__button orange__button') Ask a Question
         div(class='question__list__body')
             each question in questions
                 div(class="question__container")
                     div(class= 'answer__total')= `Answers: ${question.Answers.length}`
                     div(class='question__content')
-                        a(href=`/questions/${question.id}` class='question__title')= question.title
-                        p= question.message
+                        a(href=`/questions/${question.id}`)= question.title
+                        div(class='question__message')
+                            p= question.message
                     div(class='question__list__user')
                         img(src="/images/Logo.svg", alt="profile pic")
                         div(class="question__user__name")

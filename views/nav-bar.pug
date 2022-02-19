@@ -14,12 +14,12 @@ nav(class='navbar')
                 a(class='logout__button__navbar grey__button' href='/logout') Logout
     else
         div(class="buttons__navbar")
-            div
-                a(class='login__button__navbar orange__button' href='/') Login
-                a(class='signup__button__navbar grey__button' href='/users/signup') Sign up
             div(class="demo__button")
                 form(action="/", method="post" )
                     input(type="hidden" name="_csrf" value=csrfToken)
                     input(type="hidden" name="userName" value="sifuhotman")
                     input(type="hidden" name="password" value="password")
                     button(type="submit" class="demo__button__navbar") Demo
+            div
+                a(class='login__button__navbar orange__button' href='/') Login
+                a(class='signup__button__navbar grey__button' href='/users/signup') Sign up

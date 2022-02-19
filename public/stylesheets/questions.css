@@ -1,4 +1,4 @@
-.question__background {
+/* .question__background {
     background-image: url('/images/StuckOverflow_Questions_BG.svg');
     background-repeat: no-repeat;
     background-position: center;
@@ -7,12 +7,7 @@
     position: fixed;
     width: 75%;
     height: 185px;
-}
-
-.question__title {
-    font-weight: bolder;
-    font-size: 16px;
-}
+} */
 
 .question__message {
     font-weight: normal;

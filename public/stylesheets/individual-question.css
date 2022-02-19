@@ -1,0 +1,35 @@
+.question__two__background {
+    background-image: url('/images/StuckOverflow_Questions2_BG.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: 0px;
+    background-position-x: -20px;
+    position: fixed;
+    width: 75%;
+    height: 185px;
+}
+
+.question__list__body {
+    display:grid;
+    width: 60%;
+    margin: 0 auto;
+    background-color: white;
+}
+
+.answer__background {
+    background-image: url('/images/StuckOverflow_Answer_BG.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: 0px;
+    background-position-x: -20px;
+    position: fixed;
+    width: 75%;
+    height: 185px;
+}
+
+.answer__list__body {
+    display:grid;
+    width: 60%;
+    margin: 0 auto;
+    background-color: white;
+}

@@ -54,7 +54,7 @@
     width : 65px;
     height : 25px;
     margin: 0px 5px;
-    padding: 4px;
+    padding: 4px 10px;
     color: rgb(150, 150, 150);
     background-color: rgb(255, 255, 255);
 }
@@ -67,25 +67,38 @@
 /*  LOGIN BUTTON  */
 .login__button__navbar {
     width : 80px;
-    height : 22px;
+    height : 25px;
     margin: 0px 5px;
-    padding: 4px;
+    padding: 4px 10px;
 }
 
 .login__button__main {
     width : 238px;
-    height : 37px;
-    margin-top: 10px;
+    height : 35px;
 }
 
 /*  ASK BUTTON */
 .ask__question__button {
+    border: 0px;
+    border-radius : 2px;
     width : 150px;
     height : 25px;
+    margin: 0px 5px;
+    padding: 4px;
 }
 
 /*  SIGNUP BUTTON  */
 .signup__button__navbar {
+    border: 0px;
+    border-radius : 2px;
+    width : 65px;
+    height : 25px;
+    margin: 0px 5px;
+    padding: 4px 10px;
+}
+
+/*  LOGOUT BUTTON  */
+.logout__button__navbar {
     border: 0px;
     border-radius : 2px;
     width : 65px;
