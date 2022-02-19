@@ -33,7 +33,7 @@ block content
                         if locals.authenticated
                             if userId === answer.userId
                                 div(class="answer-profile-pic")
-                                    //- img(src="", alt="")
+                                div(class="user-name")
                                 div(class="edit-answer orange-button")
                                     a(href=`/questions/answers/${answer.id}/edit`) Edit
                                 div(class="delete-answer" id=`delete-${answer.id}`)
