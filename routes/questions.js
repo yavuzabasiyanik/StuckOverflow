@@ -71,7 +71,7 @@ router.post('/ask', questionValidator, csrfProtection, asyncHandler(async (req, 
 
     if (validationErr.isEmpty()) {
         await question.save();
-        res.redirect('/questions')
+        res.redirect('/questions');
     } else {
         const errors = validationErr.array().map(err => err.msg);
         res.render('create-question', {
@@ -227,33 +227,33 @@ router.post(`/:id(\\d+)/delete`, asyncHandler(async (req, res) => {
 
 // Create New Answer
 router.get('/:id(\\d+)/answer', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
-        const userId = req.session.auth.userId;
-        const questionId = parseInt(req.params.id);
+    const userId = req.session.auth.userId;
+    const questionId = parseInt(req.params.id);
 
-        const answer = await db.Answer.findOne({
-            where: {
-                userId,
-                questionId
-            }
-        });
-
-        console.log(answer);
-        // const question = await db.Question.findByPk(questionId);
-
-        if (answer) {
-            const message = 'You have already answered this question';
-            res.render('error', {
-                message,
-                title: 'NO',
-                questionId: answer.questionId
-            });
-        } else {
-            res.render('answer-form', {
-                title: 'Answer a Question',
-                csrfToken: req.csrfToken(),
-                questionId
-            });
+    const answer = await db.Answer.findOne({
+        where: {
+            userId,
+            questionId
         }
+    });
+
+    console.log(answer);
+    // const question = await db.Question.findByPk(questionId);
+
+    if (answer) {
+        const message = 'You have already answered this question';
+        res.render('error', {
+            message,
+            title: 'NO',
+            questionId: answer.questionId
+        });
+    } else {
+        res.render('answer-form', {
+            title: 'Answer a Question',
+            csrfToken: req.csrfToken(),
+            questionId
+        });
+    }
 }));
 
 router.post('/:id(\\d+)/answer', answerValidator, csrfProtection, asyncHandler(async (req, res) => {
@@ -355,7 +355,6 @@ router.delete(`/answers/:id(\\d+)/delete`, asyncHandler(async (req, res) => {
     const id = req.params.id;
     const answer = await db.Answer.findByPk(id);
 
-    console.log("avengars? avengars!", answer)
     await answer.destroy();
 
     res.json({ message: 'Answer Deleted' });
@@ -363,7 +362,6 @@ router.delete(`/answers/:id(\\d+)/delete`, asyncHandler(async (req, res) => {
 
 
 // votes
-
 router.post('/answer/:id(\\d+)/upVotes', asyncHandler(async (req, res) => {
     const id = req.params.id;
 
@@ -373,7 +371,7 @@ router.post('/answer/:id(\\d+)/upVotes', asyncHandler(async (req, res) => {
         userId = req.session.auth.userId;
     }
 
-    const answer = await db.Answer.findByPk(id,{
+    const answer = await db.Answer.findByPk(id, {
         include: [db.Upvote, db.Downvote]
     });
 
@@ -423,7 +421,7 @@ router.post('/answer/:id(\\d+)/upVotes', asyncHandler(async (req, res) => {
 
     let totalVotes = upVotes.length - downVotes.length;
 
-    res.json({totalVotes});
+    res.json({ totalVotes });
 }));
 
 router.post('/answer/:id(\\d+)/downVotes', asyncHandler(async (req, res) => {
@@ -467,7 +465,6 @@ router.post('/answer/:id(\\d+)/downVotes', asyncHandler(async (req, res) => {
             answerId: id,
             userId
         });
-
     }
 
     const upVotes = await db.Upvote.findAll({
@@ -483,13 +480,7 @@ router.post('/answer/:id(\\d+)/downVotes', asyncHandler(async (req, res) => {
 
     let totalVotes = upVotes.length - downVotes.length;
 
-    res.json({totalVotes});
-
-    // res.redirect(`/questions/${answer.questionId}`);
-
+    res.json({ totalVotes });
 }));
-
-
-
 
 module.exports = router;

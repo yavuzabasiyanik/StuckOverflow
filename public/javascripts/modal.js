@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", e => {
     const btn = document.querySelector('.ask__question__button');
     const modal = document.querySelector('.question__login');
@@ -20,6 +19,4 @@ document.addEventListener("DOMContentLoaded", e => {
         modal.style.display = "none";
         body.style.opacity = 1;
     });
-
-
 });
