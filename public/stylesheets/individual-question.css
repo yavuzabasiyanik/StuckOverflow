@@ -6,13 +6,6 @@
     /* width: 60%; */
 }
 
-.individual-question-bg img {
-    display: block;
-    width: 75%;
-    height: auto;
-    margin-left:50px;
-}
-
 .question__two__background {
     display: block;
     background-image: url('/images/StuckOverflow_Questions2_BG.svg');
@@ -185,18 +178,11 @@
     width: 40px;
 }
 .delete__answer {
-    background : linear-gradient(0deg, rgba(255, 0, 0, 1) 0%, rgba(200, 0, 0, 1) 100%);
-    border: 0px;
-    border-radius : 2px;
+    display: flex;
+    justify-content: center;
+    background-color: red;
     color: white;
-    font-weight: bolder;
-    margin-top: 10px;
-}
-
-.delete__answer:hover {
-    cursor: pointer;
-    background : linear-gradient(0deg, rgba(255, 0, 0, 1) 0%, rgba(200, 0, 0, 1) 100%);
-    color: rgb(0, 0, 0);
+    border: 1px solid white;
 }
 
 /* .cancel__edit {
@@ -244,63 +230,13 @@
     border-style : Solid;
     border-color : rgba(35, 31, 32, 1);
     border-width : 1px;
-    width : 250px;
-    height : 250px;
+    width : 290px;
+    height : 260px;
     border-radius : 13px;
-    position: relative;
-    bottom: 80%;
-    left:170%;
-}
-
-.modal__container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    width: 200px;
-    height: auto;
-}
-
-.delete__answer__box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.delete__answer__confirm {
-    background : linear-gradient(0deg, rgba(255, 100, 0, 1) 0%, rgba(255, 150, 0, 1) 100%);
-    border: 0px;
-    border-radius : 2px;
-    color: white;
-    font-weight: bolder;
-    margin-top: 10px;
-}
-
-.delete__answer__confirm:hover {
-    cursor: pointer;
-    background : linear-gradient(0deg, rgba(255, 150, 0, 1) 0%, rgba(255, 100, 0, 1) 100%);
-    color: rgb(0, 0, 0);
-}
-
-.delete__answer__cancel {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(0deg, rgba(150, 150, 150, 1) 0%, rgba(200, 200, 200, 1) 100%);
-    border: 0px;
-    border-radius : 2px;
-    color: rgb(0, 0, 0);
-    font-weight: bolder;
-    margin-top: 10px;
-    height:20px;
-}
-
-.delete__answer__cancel:hover {
-    cursor: pointer;
-    background: linear-gradient(0deg, rgba(150, 150, 150, 1) 0%, rgba(100, 100, 100, 1) 100%);
-    color: rgb(255, 255, 255);
+    position: absolute;
+    top: 10%;
+    left: 33%;
+    right: 33%;
 }
 
 .close {
