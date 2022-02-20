@@ -6,16 +6,11 @@
     /* width: 60%; */
 }
 
-.question__two__background {
+.individual__question__background img {
     display: block;
-    background-image: url('/images/StuckOverflow_Questions2_BG.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-position-y: 0px;
-    background-position-x: 200px;
-    position: fixed;
-    width: 75%;
-    height: 185px;
+    width: 60%;
+    height: auto;
+    margin: 0px auto;
 }
 
 .title-profile {
@@ -69,16 +64,16 @@
     width: 60%;
     margin: 0px auto;
     height: auto;
-    border: 0.5mm ridge whitesmoke
+    border: 0.5mm ridge rgb(200, 200, 200);
 }
 
-.images__container {
+/* .images__container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin:10px 0px;
     width: 100%;
-}
+} */
 
 /* .answer__list__body {
     display:grid;
@@ -125,6 +120,12 @@
     padding: 10px;
 }
 
+.votes__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .num-answers {
     display: flex;
     justify-content: flex-end;
@@ -132,19 +133,31 @@
     font-weight: bolder;
     color:gray;
     padding: 5px;
-    border: 0.5px solid darkgray;
+    padding-top: 10px;
+    /* border: 0.5px solid darkgray; */
     background-image: url('/images/StuckOverflow_Answers_BG.svg');
     background-repeat: no-repeat;
+
     width: 100%;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
+    background-color : #CECECE;
 }
+
+/* .answers__background img {
+    display: block;
+    width: auto;
+    height: auto;
+    position: relative;
+    right: 150px;
+} */
+
 .answers__container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     background-color: white;
-    border: 0.5mm ridge whitesmoke;
+    border: 0.5mm ridge rgb(200, 200, 200);
     width: 59.8%;
 }
 
@@ -219,26 +232,6 @@
     cursor: pointer;
 }
 
-.delete__modal {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 20% auto;
-    position: relative;
-    background : rgba(255, 255, 255, 0.8);
-    border-style : Solid;
-    border-color : rgba(35, 31, 32, 1);
-    border-width : 1px;
-    width : 290px;
-    height : 260px;
-    border-radius : 13px;
-    position: absolute;
-    top: 10%;
-    left: 33%;
-    right: 33%;
-}
-
 .close {
     display: flex;
     justify-content: center;
@@ -250,4 +243,74 @@
 
 .close:hover {
     cursor: pointer;
+}
+
+.delete__modal {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20% auto;
+    position: relative;
+    background : rgba(255, 255, 255, 0.8);
+    border-style : Solid;
+    border-color : rgba(35, 31, 32, 1);
+    border-width : 1px;
+    width : 250px;
+    height : 250px;
+    border-radius : 13px;
+    position: relative;
+    bottom: 80%;
+    left:170%;
+}
+
+.modal__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: 200px;
+    height: auto;
+}
+
+.delete__answer__box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.delete__answer__confirm {
+    background : linear-gradient(0deg, rgba(255, 100, 0, 1) 0%, rgba(255, 150, 0, 1) 100%);
+    border: 0px;
+    border-radius : 2px;
+    color: white;
+    font-weight: bolder;
+    margin-top: 10px;
+}
+
+.delete__answer__confirm:hover {
+    cursor: pointer;
+    background : linear-gradient(0deg, rgba(255, 150, 0, 1) 0%, rgba(255, 100, 0, 1) 100%);
+    color: rgb(0, 0, 0);
+}
+
+.delete__answer__cancel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(0deg, rgba(150, 150, 150, 1) 0%, rgba(200, 200, 200, 1) 100%);
+    border: 0px;
+    border-radius : 2px;
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    margin-top: 10px;
+    height:20px;
+}
+
+.delete__answer__cancel:hover {
+    cursor: pointer;
+    background: linear-gradient(0deg, rgba(150, 150, 150, 1) 0%, rgba(100, 100, 100, 1) 100%);
+    color: rgb(255, 255, 255);
 }

@@ -4,6 +4,10 @@
 @import 'questions.css';
 @import 'individual-question.css';
 @import 'forms.css';
+@import 'profile.css';
+@import 'answer.css';
+@import 'images.css';
+
 
 * {
     margin: 0;

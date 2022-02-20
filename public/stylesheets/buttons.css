@@ -144,3 +144,16 @@
     margin: 0px 5px;
     padding: 4px 10px;
 }
+
+.delete__answer {
+    background : linear-gradient(0deg, rgba(255, 0, 0, 1) 0%, rgba(200, 0, 0, 1) 100%);
+    border: 0px;
+    border-radius : 2px;
+    color: white;
+    font-weight: bolder;
+    margin-top: 10px;
+}
+
+.delete__answer:hover {
+    cursor: pointer;
+}

@@ -1,5 +1,14 @@
-.logo {
-    height: 30px;
-    width: 30px;
-    margin-left: 10px
+.images__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin:10px auto;
+    width: 50%;
+}
+
+.images__container img {
+    margin: 10px;
+    width: 50%;
+    /* border: 1px black solid; */
+    border-radius: 5px;
 }
