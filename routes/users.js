@@ -53,7 +53,15 @@ const userValidator = [
     .exists({ checkFalsy: true })
     .withMessage('Please enter a username')
     .isLength({ max: 50 })
-    .withMessage('Username can not be more than 50 characters long'),
+    .withMessage('Username can not be more than 50 characters long')
+    .custom((value) => {
+      return db.User.findOne({ where: { userName: value } })
+        .then((user) => {
+          if (user) {
+            return Promise.reject('The provided Username is already in use by another account');
+          }
+        });
+    }),
   check('password')
     .exists({ checkFalsy: true })
     .withMessage('Please enter a Password')
@@ -112,7 +120,7 @@ router.get('/profile', asyncHandler(async(req, res) => {
 
     const user = await db.User.findByPk(id, {
       include: [
-        db.Question, 
+        db.Question,
         {
           model: db.Answer,
           include: db.Question,
