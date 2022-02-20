@@ -7,7 +7,6 @@
     margin: 0px 10px;
 }
 
-
 .buttons__individual__question {
     display: flex;
     flex-direction: column;
@@ -200,4 +199,16 @@
     height : 15px;
     margin: 0px 5px;
     padding: 4px 10px;
+}
+
+.cancel__button {
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+    color: black;
+
+}
+
+.cancel__button:hover {
+    color:white;
 }

@@ -8,25 +8,25 @@ block content
                 div(class="user__picture")
                     if user.profileUrl
                         img(src=`${user.profileUrl}`, alt="profile pic")
-                        h3=user.userName
+                        h4=user.userName
                     else
                         img(src="/images/defaultprofile.png", alt="alec")
-                        h3=user.userName
+                        h4=user.userName
                 div(class='user__info__box')
-                    h2=`First Name: ${user.firstName}`
-                    h2=`Last Name: ${user.lastName}`
-                    h2=`Contact: ${user.email}`
+                    h4=`First Name: ${user.firstName}`
+                    h4=`Last Name: ${user.lastName}`
+                    h4=`Contact: ${user.email}`
             div(class='user__questions')
                 if user.Questions
                     div(class='profile__questions__background')
                     div
                         each question in user.Questions
-                            li
+                            li(class="profile__li")
                                 a(href=`/questions/${question.id}`)=question.title
             div(class='user__answers')
                 if user.Answers
                     div(class='profile__answers__background')
                     div
                         each answer in user.Answers
-                            li
+                            li(class="profile__li")
                                 a(href=`/questions/${answer.Question.id}`)=answer.Question.title

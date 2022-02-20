@@ -1,0 +1,47 @@
+.signup__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20% auto;
+    position: relative;
+    border-color : 1px rgb(50, 50, 50) solid;
+    background : rgba(255, 255, 255, 0.8);
+    width : 500px;
+    height : auto;
+    border-radius : 13px;
+    padding: 20px 0;
+}
+
+.signup__form > * {
+    padding-bottom: 10px;
+}
+
+.signup__form__fields > * {
+
+    padding: 5px 0px;
+}
+
+.signup__form__fields > input {
+    height: 10px;
+    width: 440px;
+}
+
+.signup__background {
+    background-image: url('/images/StuckOverflow_BG.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: 35px;
+    background-size: cover;
+    position: relative;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.please__login {
+    font-weight: bold;
+    font-size: 20px;
+}

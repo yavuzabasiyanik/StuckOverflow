@@ -12,3 +12,12 @@
     /* border: 1px black solid; */
     border-radius: 5px;
 }
+
+.ask__question__background {
+    background-image: url('/images/StuckOverflow_little_dude.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: 35px;
+    background-size: cover;
+    position: relative;
+}

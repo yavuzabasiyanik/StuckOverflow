@@ -222,6 +222,7 @@ button.active__upvotes {
     /* width: 50px; */
 }
 
+
 .active__upvotes:hover {
     background-image: url('/images/upvote_active.svg');
     cursor: pointer;

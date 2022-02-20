@@ -17,16 +17,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 
 .user__picture img {
   border: 1px rgb(150, 150, 150) solid;
   border-radius: 5px;
+  margin-bottom: 5px ;
 }
 
 .user__profile {
   display: flex;
   flex-direction: row;
+  /* justify-content: space-around; */
   width: 100%;
   /* padding: 10px; */
   /* border: 1px rgb(150, 150, 150) solid;
@@ -45,19 +48,25 @@
   border-radius: 5px; */
 }
 
-li {
+.profile__li {
   list-style-type: none;
   border: 1px rgb(150, 150, 150) solid;
   border-radius: 2px;
-  font-size: 14px;
+  font-size: 12px;
+  height: 16px;
+  text-overflow: ellipsis;
+  padding: 10px;
+  margin-top: 3px;
 }
 
 .user__info__box {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: 20px;
   width: auto;
-  margin: 10px;
+  margin: 15px;
 }
 
 .user__info__box h2 {
