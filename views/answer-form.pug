@@ -5,7 +5,7 @@ block content
     div(class='answer-container')
         form(action=`/questions/${questionId}/answer` method="post" class="q-a-forms")
             input(type="hidden" name="_csrf" value=csrfToken)
-            label Answering Question: #{title}
+            h1 #{title}
             label(for="message") Answer:
             textarea(name="message" value=message required)
             label(for="answerImg1") img url:
@@ -14,6 +14,6 @@ block content
             input(type="text" name="answerImg2" value=answerImg2)
             label(for="answerImg3") img url:
             input(type="text" name="answerImg3" value=answerImg3)
-            button(type="submit" class="orange-button") Post Answer
-            div(class="cancel-edit")
+            button(type="submit" class="orange__button") Post Answer
+            div(class="cancel-edit grey__button")
                     a(href=`/questions`) Cancel

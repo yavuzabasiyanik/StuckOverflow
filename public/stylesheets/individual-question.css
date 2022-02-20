@@ -85,7 +85,7 @@
 .answer-a-question {
     position: relative;
     right:0%;
-    background : linear-gradient(0deg, rgba(255, 100, 0, 1) 0%, rgba(255, 150, 0, 1) 100%);
+    /* background : linear-gradient(0deg, rgba(255, 100, 0, 1) 0%, rgba(255, 150, 0, 1) 100%); */
     border: 0px;
     border-radius : 2px;
     color: white;
@@ -101,6 +101,7 @@
     padding: 5px;
     font-size: 10px;
     margin: 10px 0px;
+
 }
 
 .answer__message {
@@ -121,6 +122,7 @@
 }
 
 .votes__container {
+    padding-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -209,28 +211,38 @@
     background-color: rgba(255, 255, 255, 0)
 }
 
-.active__upvotes {
+button.active__upvotes {
+
     border: 0px;
-    background-color: rgba(255, 255, 255, 0)
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url('/images/upvote_inactive.svg');
+    background-repeat: no-repeat;
+    /* background-size: 200%; */
+    height: 10px;
+    /* width: 50px; */
 }
 
 .active__upvotes:hover {
+    background-image: url('/images/upvote_active.svg');
     cursor: pointer;
 }
 
-.inactive__downvotes {
+button.active__downvotes {
     border: 0px;
-    background-color: rgba(255, 255, 255, 0)
+    background-color: rgba(255, 255, 255, 0);
+    background-image: url('/images/downvote_inactive.svg');
+    background-repeat: no-repeat;
+    /* background-size: 200%; */
+    height: 10px;
+    /* width: 50px; */
 }
 
-.active__downvotes {
-    border: 0px;
-    background-color: rgba(255, 255, 255, 0)
-}
 
 .active__downvotes:hover {
+    background-image: url('/images/downvote_active.svg');
     cursor: pointer;
 }
+
 
 .close {
     display: flex;
