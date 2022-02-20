@@ -1,4 +1,4 @@
-.answer-container {
+.delete__question__container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,19 +6,8 @@
   margin: 10% auto;
   border-color : 1px rgb(50, 50, 50) solid;
   background : rgba(255, 255, 255, 0.8);
-  width : 600px;
+  width : 400px;
   height : auto;
   border-radius : 13px;
-  padding: 60px;
-}
-
-.answer-total {
-  font-size: 15px;
-}
-
-.answer-box {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding: 40px;
 }

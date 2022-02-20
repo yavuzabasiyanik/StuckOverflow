@@ -1,0 +1,107 @@
+.profile__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10% auto;
+  border: 1px rgb(50, 50, 50) solid;
+  background : rgba(255, 255, 255, 0.8);
+  width : 600px;
+  height : auto;
+  border-radius : 13px;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.user__picture {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.user__picture img {
+  border: 1px rgb(150, 150, 150) solid;
+  border-radius: 5px;
+  margin-bottom: 5px ;
+}
+
+.user__profile {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-around; */
+  width: 100%;
+  /* padding: 10px; */
+  /* border: 1px rgb(150, 150, 150) solid;
+  border-radius: 5px; */
+}
+
+.user__questions {
+  padding-top: 20px;
+  /* border: 1px rgb(150, 150, 150) solid;
+  border-radius: 5px; */
+}
+
+.user__answers {
+  padding-top: 20px;
+  /* border: 1px rgb(150, 150, 150) solid;
+  border-radius: 5px; */
+}
+
+.profile__li {
+  list-style-type: none;
+  border: 1px rgb(150, 150, 150) solid;
+  border-radius: 2px;
+  font-size: 12px;
+  height: 16px;
+  text-overflow: ellipsis;
+  padding: 10px;
+  margin-top: 3px;
+}
+
+.user__info__box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  width: auto;
+  margin: 15px;
+}
+
+.user__info__box h2 {
+  padding: 5px 0px;
+}
+
+.profile__questions__background {
+  background-image: url('/images/StuckOverflow_Title_Questions.svg');
+  background-repeat: no-repeat;
+  height: 50px;
+  width: auto;
+
+}
+
+.profile__answers__background {
+  background-image: url('/images/StuckOverflow_Title_Answers.svg');
+  background-repeat: no-repeat;
+  height: 50px;
+  width: auto;
+}
+
+.profile__color__detail {
+  /* max-width: 250px; */
+  padding: 1rem;
+  /* color: white; */
+  border-width: 5px;
+  border-style: solid;
+  border-image:
+    linear-gradient(
+      to bottom,
+      rgba(255, 100, 0, 1),
+      /* rgb(0, 0, 0), */
+      rgba(255, 150, 0, 1)
+    ) 1 100%;
+}
+
+
+/* background : linear-gradient(0deg, rgba(255, 100, 0, 1) 0%, rgba(255, 150, 0, 1) 100%); */

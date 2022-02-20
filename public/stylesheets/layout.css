@@ -1,9 +1,16 @@
 @import 'nav-bar.css';
 @import 'buttons.css';
 @import 'login.css';
+@import 'signup.css';
 @import 'questions.css';
 @import 'individual-question.css';
+@import 'delete-question.css';
+@import 'edit-question.css';
 @import 'forms.css';
+@import 'profile.css';
+@import 'answer.css';
+@import 'images.css';
+
 
 * {
     margin: 0;

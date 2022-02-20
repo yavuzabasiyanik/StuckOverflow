@@ -1,5 +1,23 @@
-.logo {
-    height: 30px;
-    width: 30px;
-    margin-left: 10px
+.images__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin:10px auto;
+    width: 50%;
+}
+
+.images__container img {
+    margin: 10px;
+    width: 50%;
+    /* border: 1px black solid; */
+    border-radius: 5px;
+}
+
+.ask__question__background {
+    background-image: url('/images/StuckOverflow_little_dude.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: 35px;
+    background-size: cover;
+    position: relative;
 }

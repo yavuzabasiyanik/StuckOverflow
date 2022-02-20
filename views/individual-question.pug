@@ -3,7 +3,8 @@ extends layout.pug
 block content
     body
         include nav-bar.pug
-        img(src="/images/StuckOverflow_Questions2_BG.svg", alt="bg")
+        div(class="individual__question__background")
+            img(src="/images/StuckOverflow_Questions2_BG.svg", alt="Question Image 2")
         div(class='question__answer__list__container')
             div(class="individual__question__container")
                 div(class="title-profile")
@@ -25,7 +26,7 @@ block content
                     div
                         if locals.authenticated
                             if userId !== question.userId
-                                div(class="answer-a-question orange-button")
+                                div(class="answer-a-question orange__button")
                                     a(href=`/questions/${question.id}/answer`) Answer Question
                     div(class='question__message')
                         p=question.message
@@ -34,6 +35,8 @@ block content
                         img(src=`${question.questionImg2}`)
                         img(src=`${question.questionImg3}`)
             //- div(class="Q_A__image_BG")
+            //- div(class="answers__background")
+            //- img(src="/images/StuckOverflow_Answers_BG.svg", alt="Answers Image")
             div(class="answers__container")
                 if answers
                     h1(class='num-answers')=`${answers.length}`
@@ -53,27 +56,35 @@ block content
                                         div(class="answer-profile-pic")
                                         div(class="user__name")
                                         div(class="votes")
-                                            img(src="/images/upvote_inactive.svg" class="inactive__upvotes")
-                                            p(class="counts" id=`count-${answer.id}`)=answer.Upvotes.length-answer.Downvotes.length
-                                            img(src="/images/downvote_inactive.svg" class="inactive__downvotes")
-                                        div(class="edit__answer orange-button")
-                                            a(href=`/questions/answers/${answer.id}/edit`) Edit
-                                        div(class="delete__answer" id=`delete-${answer.id}`) Delete
+                                            h6(class="inactive__upvotes") Answer Rating:
+                                            h6(class="counts" id=`count-${answer.id}`)=answer.Upvotes.length-answer.Downvotes.length
+                                        div(class='edit__delete__container')
+                                            div(class="edit__answer orange__button")
+                                                a(href=`/questions/answers/${answer.id}/edit`) Edit
+                                            div(class="delete__answer grey__button" id=`delete-${answer.id}`) Delete
+                                        div(class="delete__modal")
+                                            div(class="modal__container")
+                                                h3 Delete your answer?
+                                                    div(class="delete__answer__box")
+                                                        form(action=`/questions/answers/${answer.id}/delete`, method="post")
+                                                            button(type="submit" class="delete__answer__confirm orange__button") Yes
+                                                            div(class='delete__answer__cancel grey__button')  Cancel
                                     else
-                                        div
+                                        div(class="votes__container")
                                             div
                                                 form(action=`/questions/answer/${answer.id}/upVotes` method="post")
-                                                    button(type="submit" class="active__upvotes" id=`up-${answer.id}`)=`🔺`
+                                                    //- button(type="submit" class="active__upvotes" id=`up-${answer.id}`)=`🔺`
+                                                    button(type="submit" class="active__upvotes" id=`up-${answer.id}`)
                                             div
                                                 p(class="counts" id=`count-${answer.id}`)=answer.Upvotes.length-answer.Downvotes.length
                                             div
                                                 form(action=`/questions/answer/${answer.id}/downVotes` method="post")
-                                                    button(type="submit" class="active__downvotes" id=`down-${answer.id}`)=`🔻`
+                                                    //- button(type="submit" class="active__downvotes" id=`down-${answer.id}`)=`🔻`
+                                                    button(type="submit" class="active__downvotes" id=`down-${answer.id}`)
                                 else
                                     div(class="votes")
                                         h6(class="inactive__upvotes") Answer Rating:
                                         h6(class="counts" id=`count-${answer.id}`)=answer.Upvotes.length-answer.Downvotes.length
-                                        //- p(class="inactive__downvotes")=`🔻`
                             div(class='answer__message')
                                 //- h2 Answer:
                                 p=answer.message
@@ -81,15 +92,6 @@ block content
                                     img(src=`${answer.answerImg1}`)
                                     img(src=`${answer.answerImg2}`)
                                     img(src=`${answer.answerImg3}`)
-                        div(class="delete__modal")
-                            h1 Are you sure you want to Delete?
-                                div.error-container
-                                    if errors
-                                        ul
-                                            each error in errors
-                                                li(class="error")= error
-                                form(action=`/questions/answers/${answer.id}/delete`, method="post")
-                                        button(type="submit" class="delete__answer__confirm") Yes
-                                        div(class='delete__answer__cancel')  Cancel
+
     script(src="/javascripts/votes.js" type='module')
     script(src="/javascripts/delete-answer-modal.js" type='module')

@@ -1,4 +1,10 @@
-p Are you sure you want to delete your question?
-form(action=`/questions/${question.id}/delete` method="post")
-    button(type="submit") Yes
-a(href=`/questions/${question.id}`) No
+extends layout.pug
+
+block content
+    div(class="delete__question__container")
+        h2 Are you sure you want to delete your question?
+        div
+            form(action=`/questions/${question.id}/delete` method="post")
+                button(type="submit" class="orange__button") Yes
+            div(class="grey__button")
+                a(href=`/questions/${question.id}`) No

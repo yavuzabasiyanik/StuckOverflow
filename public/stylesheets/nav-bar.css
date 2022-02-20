@@ -7,6 +7,7 @@
     width: 100%;
     position: sticky;
     top: 0;
+    z-index: 1000;
 }
 
 .navbar__logo {
@@ -29,7 +30,7 @@
     margin: 0px 15px;
 }
 
-.search__bar{
+/* .search__bar{
     border: 1px;
     background-color: red;
-}
+} */

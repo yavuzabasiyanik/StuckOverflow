@@ -13,7 +13,6 @@
     height: 100px;
 }
 
-
 .question__background img {
     display: block;
     width: 75%;
@@ -44,7 +43,7 @@
     display: grid;
     justify-content: center;
     grid-template-columns: 20% 60% 20%;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgb(188, 188, 188);
     height: 100px;
     overflow: hidden;
     padding: 10px;
@@ -65,7 +64,7 @@
 }
 
 .question__content h6 {
-    font-size: 10px;
+    font-size: 8px;
     font-weight: bold;
 }
 
