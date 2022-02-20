@@ -2,25 +2,31 @@ extends layout.pug
 
 block content
     include nav-bar.pug
-    div(class='profile-container')
-        h1=`${user.userName}'s Profile`
-        if user.profileUrl
-            img(src=`${user.profileUrl}`, alt="profile pic")
-        else
-            img(src="/images/defaultprofile.png", alt="alec")
-        div(class='user-info')
-            h2=`First Name: ${user.firstName}`
-            h2=`Last Name: ${user.lastName}`
-            h2=`Contact: ${user.email}`
-        div(class='users-questions')
-            if user.Questions
-                h3 My Questions
-                    each question in user.Questions
-                        li
-                            a(href=`/questions/${question.id}`)=question.title
-        div(class='users-answers')
-            if user.Answers
-                h3 My Answers
-                    each answer in user.Answers
-                        li
-                            a(href=`/questions/${answer.Question.id}`)=answer.Question.title
+    div(class='profile__container')
+        div(class='profile__color__detail')
+            div(class='user__profile')
+                div(class="user__picture")
+                    if user.profileUrl
+                        img(src=`${user.profileUrl}`, alt="profile pic")
+                        h3=user.userName
+                    else
+                        img(src="/images/defaultprofile.png", alt="alec")
+                        h3=user.userName
+                div(class='user__info__box')
+                    h2=`First Name: ${user.firstName}`
+                    h2=`Last Name: ${user.lastName}`
+                    h2=`Contact: ${user.email}`
+            div(class='user__questions')
+                if user.Questions
+                    div(class='profile__questions__background')
+                    div
+                        each question in user.Questions
+                            li
+                                a(href=`/questions/${question.id}`)=question.title
+            div(class='user__answers')
+                if user.Answers
+                    div(class='profile__answers__background')
+                    div
+                        each answer in user.Answers
+                            li
+                                a(href=`/questions/${answer.Question.id}`)=answer.Question.title
