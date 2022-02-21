@@ -13,11 +13,11 @@ block content
                 label(for="message") Question:
                 textarea(name="message" value=message required)
                 label(for="questionImg1") img url:
-                input(type="text" name="questionImg1" value=questionImg1)
+                input(type="url" name="questionImg1" value=questionImg1)
                 label(for="questionImg2") img url:
-                input(type="text" name="questionImg2" value=questionImg2)
+                input(type="url" name="questionImg2" value=questionImg2)
                 label(for="questionImg3") img url:
-                input(type="text" name="questionImg3" value=questionImg3 class='create-message')
+                input(type="url" name="questionImg3" value=questionImg3 class='create-message')
                 button(type="submit" class="orange-button") Ask Question
                 div(class="cancel-edit")
                     a(href=`/questions`) Cancel

@@ -1,0 +1,20 @@
+.avengars-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background : #E5E5E5;
+    height: 35px;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.footer{
+
+}
+.avengars-profiles{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
