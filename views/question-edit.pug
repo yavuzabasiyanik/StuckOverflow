@@ -3,7 +3,7 @@ extends layout.pug
 block content
     include nav-bar.pug
     div(class="edit-question-container")
-        form(action=`/questions/${question.id}/edit` method="post")
+        form(action=`/questions/${question.id}/edit` method="post" class="q-a-forms")
             input(type="hidden" name="_csrf" value=csrfToken)
             label(for="title")= title
             input(type="text" name="title" value=question.title)
@@ -15,8 +15,8 @@ block content
             input(type="text" name="questionImg2" value=question.questionImg2)
             label(for="questionImg3") img url:
             input(type="text" name="questionImg3" value=question.questionImg3)
-            button(type="submit" class="orange__button") Save Changes
-            div(class="cancel-edit grey__button")
-                a(href=`/questions/${question.id}`) Cancel
+            div(class="ask__cancel")
+                    button(type="submit" class="ask__question__button orange__button") Save changes
+                    div(class="cancel__edit grey__button")
+                        a(href=`/questions`) Cancel
     include footer.pug
-    

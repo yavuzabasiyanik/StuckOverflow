@@ -18,8 +18,8 @@ block content
                 input(type="url" name="questionImg2" value=questionImg2)
                 label(for="questionImg3") img url:
                 input(type="url" name="questionImg3" value=questionImg3 class='create-message')
-                button(type="submit" class="orange-button") Ask Question
-                div(class="cancel-edit")
-                    a(href=`/questions`) Cancel
+                div(class="ask__cancel")
+                    button(type="submit" class="ask__question__button orange__button") Ask Question
+                    div(class="cancel__edit grey__button")
+                        a(href=`/questions`) Cancel
     include footer.pug
-    

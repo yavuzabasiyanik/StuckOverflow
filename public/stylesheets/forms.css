@@ -24,19 +24,7 @@
   height: 100px;
 }
 
-.orange-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background : linear-gradient(0deg, rgba(255, 100, 0, 1) 0%, rgba(255, 150, 0, 1) 100%);
-  border: 0px;
-  border-radius : 2px;
-  color: white;
-  font-weight: bolder;
-  margin-top: 10px;
-}
-
-.cancel-edit {
+.cancel__edit {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,4 +34,12 @@
   color: rgb(0, 0, 0);
   font-weight: bolder;
   margin-top: 10px;
+}
+
+.q-a-forms {
+  margin: 5px 0;
+}
+
+.q-a-forms input{
+  margin: 5px 0;
 }

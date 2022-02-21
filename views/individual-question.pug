@@ -26,7 +26,7 @@ block content
                     div
                         if locals.authenticated
                             if userId !== question.userId
-                                div(class="answer-a-question orange__button")
+                                div(class="answer__a__question orange__button")
                                     a(href=`/questions/${question.id}/answer`) Answer Question
                     div(class='question__message')
                         p=question.message
@@ -35,11 +35,15 @@ block content
                         img(src=`${question.questionImg2}`)
                         img(src=`${question.questionImg3}`)
             //- div(class="Q_A__image_BG")
-            //- div(class="answers__background")
-            //- img(src="/images/StuckOverflow_Answers_BG.svg", alt="Answers Image")
+            div(class="answers__background")
+                div
+                    img(src="/images/StuckOverflow_Answers_BG.svg", alt="Answers Image")
+                div(class="image__numbers")
+                    if answers
+                        h1(class='num-answers')=`${answers.length}`
             div(class="answers__container")
                 if answers
-                    h1(class='num-answers')=`${answers.length}`
+                    //- h1(class='num-answers')=`${answers.length}`
                         //- h2= `${answers.length}
                     each answer in question.Answers
                         div(class='answer__box' id=`answer-container-${answer.id}`)
@@ -67,19 +71,18 @@ block content
                                                 h3 Delete your answer?
                                                     div(class="delete__answer__box")
                                                         form(action=`/questions/answers/${answer.id}/delete`, method="post")
+                                                            div
                                                             button(type="submit" class="delete__answer__confirm orange__button") Yes
-                                                            div(class='delete__answer__cancel grey__button')  Cancel
+                                                            div(class='delete__answer__cancel grey__button') Cancel
                                     else
                                         div(class="votes__container")
                                             div
                                                 form(action=`/questions/answer/${answer.id}/upVotes` method="post")
-                                                    //- button(type="submit" class="active__upvotes" id=`up-${answer.id}`)=`🔺`
                                                     button(type="submit" class="active__upvotes" id=`up-${answer.id}`)
                                             div
                                                 p(class="counts" id=`count-${answer.id}`)=answer.Upvotes.length-answer.Downvotes.length
                                             div
                                                 form(action=`/questions/answer/${answer.id}/downVotes` method="post")
-                                                    //- button(type="submit" class="active__downvotes" id=`down-${answer.id}`)=`🔻`
                                                     button(type="submit" class="active__downvotes" id=`down-${answer.id}`)
                                 else
                                     div(class="votes")
@@ -92,7 +95,7 @@ block content
                                     img(src=`${answer.answerImg1}`)
                                     img(src=`${answer.answerImg2}`)
                                     img(src=`${answer.answerImg3}`)
-        
+
 
     script(src="/javascripts/votes.js" type='module')
     script(src="/javascripts/delete-answer-modal.js" type='module')

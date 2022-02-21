@@ -51,16 +51,15 @@
     background: linear-gradient(0deg, rgba(150, 150, 150, 1) 0%, rgba(200, 200, 200, 1) 100%);
     border: 0px;
     border-radius : 2px;
-    color: rgb(0, 0, 0);
+    color: black;
     font-weight: bolder;
     margin-top: 10px;
-
 }
 
 .grey__button:hover {
     cursor: pointer;
     background: linear-gradient(0deg, rgba(150, 150, 150, 1) 0%, rgba(100, 100, 100, 1) 100%);
-    color: rgb(255, 255, 255);
+    color: white;
 }
 
 /*  DEMO BUTTON AND HOVER  */
@@ -104,16 +103,39 @@
 }
 
 /*  ASK BUTTON */
+.ask__cancel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .ask__question__button {
     display: flex;
     justify-content: center;
     align-items: center;
     border: 0px;
     border-radius : 2px;
-    width : 150px;
+    width : 100%;
     height : 25px;
-    margin: 0px 5px;
+    margin: 10px 5px;
     padding: 4px;
+}
+
+.cancel__edit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0px;
+    border-radius : 2px;
+    width : 100%;
+    height : 25px;
+    margin: 10px 5px;
+    font-size: 14px;
+}
+
+.cancel__edit a:hover {
+    color: white;
 }
 
 .ask__public {
@@ -170,44 +192,55 @@
     height : 15px;
     margin: 0px 5px;
     padding: 4px 10px;
-    color: white;
+    font-size: 10px;
 }
 
-.edit__answer:hover {
+.edit__answer a {
+    color: white;
+    cursor: pointer;
+}
+
+.edit__answer a:hover {
     color: black;
     cursor: pointer;
 }
 
 .delete__answer {
+    display: flex;
+    justify-content: center;
     border: 0px;
     border-radius : 2px;
     width : 35px;
     height : 15px;
-    margin: 0px 5px;
+    margin: 5px 5px;
     padding: 4px 10px;
+    color: black;
+    font-size: 10px;
 }
+
 
 .delete__answer:hover {
     cursor: pointer;
-    color: black;
+    /* color: white; */
 }
 
 .delete__answer__cancel {
+    display: flex;
+    justify-content: center;
     font-size: 12px;
-    border: 0px;
-    border-radius : 2px;
     width : 60px;
-    height : 10px;
+    height : 15px;
     margin: 0px 5px;
     padding: 4px 10px;
 }
 
-.delete__answer__confirmation {
-    border: 0px;
-    border-radius : 2px;
-    width : 55px;
-    height : 15px;
-    margin: 0px 5px;
+.delete__answer__confirm {
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+    width : 80px;
+    height : 22px;
+    margin: 10px 5px;
     padding: 4px 10px;
 }
 

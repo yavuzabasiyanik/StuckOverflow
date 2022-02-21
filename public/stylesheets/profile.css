@@ -24,6 +24,8 @@
   border: 1px rgb(150, 150, 150) solid;
   border-radius: 5px;
   margin-bottom: 5px ;
+  width: 125px;
+  height: auto;
 }
 
 .user__profile {
