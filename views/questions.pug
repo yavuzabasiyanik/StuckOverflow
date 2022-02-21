@@ -30,7 +30,7 @@ block content
                                 if question.User.profileUrl
                                     img(src=question.User.profileUrl, alt="profile picture")
                                 else
-                                    img(src="/images/Logo.svg", alt="profile pic")
+                                    img(src="/images/defaultprofile.png", alt="profile pic")
                                 h4= question.User.userName
                                 h4= `joined on ${question.User.createdAt.toString().split(' ').slice(1,4)}`
             div(class="question__login__container")
@@ -49,3 +49,4 @@ block content
                             input(type="password" name="password")
                             button(type="submit" class="login__button__main orange__button") Login
                             div(class="login__cancel__button grey__button") Cancel
+        include footer.pug

@@ -5,6 +5,6 @@ block content
         h2 Are you sure you want to delete your question?
         div
             form(action=`/questions/${question.id}/delete` method="post")
-                button(type="submit" class="orange__button") Yes
-            div(class="grey__button")
+                button(type="submit" class="orange__button delete-question-yes") Yes
+            div(class="grey__button delete-question-no")
                 a(href=`/questions/${question.id}`) No
