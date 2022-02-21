@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
   Answer.associate = function(models) {
     Answer.belongsTo(models.User, { foreignKey: 'userId', onDelete: "cascade", foreignKeyConstraint: true })
     Answer.belongsTo(models.Question, { foreignKey: 'questionId', onDelete: "cascade", foreignKeyConstraint: true })
-    Answer.hasMany(models.Downvote, { foreignKey: 'answerId' })
-    Answer.hasMany(models.Upvote, { foreignKey: 'answerId' })
+    Answer.hasMany(models.Downvote, { foreignKey: 'answerId',onDelete: "cascade", foreignKeyConstraint: true})
+    Answer.hasMany(models.Upvote, { foreignKey: 'answerId',onDelete: "cascade", foreignKeyConstraint: true })
   };
   return Answer;
 };

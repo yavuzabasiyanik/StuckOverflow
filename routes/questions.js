@@ -217,7 +217,13 @@ router.get(`/:id(\\d+)/delete`, asyncHandler(async (req, res) => {
 
 router.post(`/:id(\\d+)/delete`, asyncHandler(async (req, res) => {
     const id = req.params.id;
-    const question = await db.Question.findByPk(id);
+    const question = await db.Question.findByPk(id,{include: db.Answer});
+
+    for(let i=0;i<question.Answers.length;i++){
+        let answer = question.Answers[i];
+
+        await answer.destroy();
+    }
 
     await question.destroy();
 

@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER
   }, {});
   Question.associate = function(models) {
-    Question.belongsTo(models.User, { foreignKey: 'userId' })
-    Question.hasMany(models.Answer, { foreignKey: 'questionId' })
+    Question.belongsTo(models.User, { foreignKey: 'userId' , onDelete: "cascade", foreignKeyConstraint: true })
+    Question.hasMany(models.Answer, { foreignKey: 'questionId',onDelete: "cascade", foreignKeyConstraint: true})
   };
   return Question;
 };
