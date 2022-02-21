@@ -30,3 +30,4 @@ block content
                         each answer in user.Answers
                             li(class="profile__li")
                                 a(href=`/questions/${answer.Question.id}`)=answer.Question.title
+    include footer.pug

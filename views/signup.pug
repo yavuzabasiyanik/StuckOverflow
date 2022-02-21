@@ -22,7 +22,7 @@ block content
                 label(for="userName") Username
                 input(type="text" name="userName" value=user.userName )
                 label(for="profileUrl") Profile Img
-                input(type="text" name="profileUrl" value=user.profileUrl)
+                input(type="url" name="profileUrl" value=user.profileUrl)
                 label(for="password") Password
                 input(type="password" name="password" )
                 label(for="confirmPassword") Confirm Password
@@ -30,3 +30,4 @@ block content
                 button(type="submit" class='orange__button') Register
                 div(class="cancel__button grey__button")
                     a(href=`/`) Cancel
+        include footer.pug
