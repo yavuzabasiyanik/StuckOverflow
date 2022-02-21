@@ -1,20 +1,30 @@
 .avengars-container{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     background : #E5E5E5;
-    height: 35px;
+    height: auto;
     width: 100%;
-    position: sticky;
-    top: 0;
     z-index: 1000;
-}
-
-.footer{
 
 }
+
+footer{
+    position: fixed;
+    width: 100%;
+    bottom:0;
+}
+
+
 .avengars-profiles{
     display: flex;
-    flex-direction: column-reverse;
     align-items: center;
+}
+
+.matthew{
+    margin: 10px;
+}
+.avengars-image{
+    height: 30px;
+    width: auto;
 }
