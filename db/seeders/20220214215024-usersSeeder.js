@@ -56,7 +56,7 @@ module.exports = {
       lastName: 'Puerta',
       email: 'test_mp@test.com',
       userName: 'mp',
-      profileUrl: 'https://i.imgflip.com/1ey8yl.jpg',
+      profileUrl: 'https://avatars.githubusercontent.com/u/88907111?v=4',
       hashedPassword: bcrypt.hashSync('Test1234!'),
       createdAt: new Date(),
       updatedAt: new Date(),
